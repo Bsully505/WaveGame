@@ -1,0 +1,25 @@
+Known Bugs:
+
+- The speed boost ability has issue going diagonally.
+
+- after images of the already passed enemies are outside of the "frame"
+
+- Lagging when you play
+
+Other Improvements:
+
+- Multiple places where Images are stored in the classpath... there only needs to be one directory of Images.
+
+-Add a way for the user to know there is or isn’t a game saved
+
+-Be able to force clear file from main menu
+
+-Have multiple saved games
+
+-Create a Mid-Boss for Easy Mode
+
+-Add more visual additions to improve polish/flair
+
+-Rebalance levels that are too easy or too hard
+
+-Music Tempo increased as the Player’s Health decreased
