@@ -19,6 +19,7 @@ public class EnemyBurst extends GameObject {
 	private int size;
 	private String side;
 	private Random r = new Random();
+	//test
 
 	public EnemyBurst(double x, double y, double velX, double velY, int size, String side, ID id, Handler handler) {
 		super(x, y, id);
