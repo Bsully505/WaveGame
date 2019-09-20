@@ -67,7 +67,7 @@ public class KeyInput extends KeyAdapter {
 			
 			
 		}
-		if (key == 88 && e.isShiftDown()) {
+		if (key == 88 && e.isShiftDown()) {//Debug menu for skipping level press shift "X"
 			upgrades.levelSkipAbility();
 			
 		}
