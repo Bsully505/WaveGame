@@ -67,11 +67,12 @@ public class KeyInput extends KeyAdapter {
 			
 			
 		}
-		if (key == 88 && e.isShiftDown()) {//Debug menu for skipping level press shift "X"
+		//Debug menu for skipping level press shift "X"
+		if (key == 88 && e.isShiftDown()) {
 			upgrades.levelSkipAbility();
 			
 		}
-		
+		//Leader board is toggled when "L" key is pressed in menu
 		if (key == 76){
 			if (game.gameState == STATE.Menu){
 				game.gameState = STATE.Leaderboard;
@@ -87,20 +88,22 @@ public class KeyInput extends KeyAdapter {
 			// using only if's allows multiple keys to be triggered at once
 			if (tempObject.getId() == ID.Player) {// find the player object, as he is the only one the user can control
 				// key events for player 1
-
+				//Goes UP
 				if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
 					tempObject.setVelY(-(this.speed));
 					keyDown[0] = true;
 				}
-		
+				//Goes Left
 				if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
 					tempObject.setVelX(-(this.speed));
 					keyDown[1] = true;
 				}
+				//Goes Down
 				if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
 					tempObject.setVelY(this.speed);
 					keyDown[2] = true;
 				}
+				//Goes Right
 				if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
 					tempObject.setVelX(this.speed);
 					keyDown[3] = true;
@@ -140,9 +143,12 @@ public class KeyInput extends KeyAdapter {
 					tempObject.setVelX(-(this.speed));
 				}
 				*/
+				
+				//Possible space bar Level Skipper but is not used 
 				if (key == KeyEvent.VK_SPACE) {
 					//upgrades.levelSkipAbility();
 				}
+				//when having an Ability press enter to activate it 
 				if (key == KeyEvent.VK_ENTER) {
 					ability = upgrades.getAbility();
 					if (ability.equals("clearScreen")) {
