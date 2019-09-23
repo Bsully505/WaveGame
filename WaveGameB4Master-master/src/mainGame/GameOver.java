@@ -41,6 +41,7 @@ public class GameOver {
 		this.hud = hud;
 		timer = 90;
 		this.retryColor = Color.white;
+		hud.reset();
 	}
 	
 	public void sendScore(){
@@ -56,6 +57,7 @@ public class GameOver {
 	public void tick(){
 		handler.clearPlayer();
 		handler.clearCoins();
+		hud.reset();
 		flash();
 	}
 
@@ -68,13 +70,12 @@ public class GameOver {
 		g.setFont(font2);
 		text = "Level: " + hud.getLevel();
 		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font2, text) / 2, Game.HEIGHT / 2 - 50);
-		text = "Score: " + hud.getScore();
+		text = "Score: " + hud.getEndScore();
 		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font2, text) / 2, Game.HEIGHT / 2 + 50);
 		g.setColor(this.retryColor);
 		g.setFont(font2);
 		text = "Click anywhere to play again";
-		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font2, text) / 2, Game.HEIGHT / 2 + 150);
-
+		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font2, text) / 2, Game.HEIGHT / 2 + 150);	
 	}
 
 	public void flash() {
