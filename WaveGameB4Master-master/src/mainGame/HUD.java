@@ -17,6 +17,7 @@ public class HUD {
 	public double health = 100;
 	private double healthMax = 100;
 	private double greenValue = 255;
+	private int endScore = 000000000;
 	private int score = 00000000000;
 	private int level = 0;
 	private boolean regen = false;
@@ -155,6 +156,8 @@ public class HUD {
 		health = 100;
 		greenValue = 255;
 		healthBarModifier = 2;
+		this.setScore(-(this.getScore()));
+		
 	}
 
 	public void render(Graphics g) {
@@ -225,12 +228,21 @@ public class HUD {
 		this.score += score;
 	}
 	
+	public void setEndScore(int score) {
+		this.endScore = score;
+	}
+	
+	
 	public double getHealth(){
 		return health;
 	}
 
 	public int getScore() {
 		return score;
+	}
+
+	public int getEndScore() {
+		return endScore;
 	}
 
 	public int getLevel() {

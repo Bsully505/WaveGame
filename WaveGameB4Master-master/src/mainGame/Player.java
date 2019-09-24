@@ -97,6 +97,7 @@ public class Player extends GameObject {
 				
 				if (this.getBounds().intersects(pickupObject.getBounds())) {
 					hud.setScore(100);
+					hud.setEndScore(hud.getScore());
 					handler.removePickup(pickupObject);
 					try {
 						hitsoundMIDIPlayer.PlayMidi(pickupcoinMIDIMusic);
