@@ -173,7 +173,7 @@ public class Upgrades {
 	}
 
 	public void resetUpgrades() {
-		Player.playerSpeed = 10;
+		Player.playerSpeed = 10; //look for diagonal speed value and add the change here
 		hud.resetHealth();
 		hud.resetRegen();
 		hud.setExtraLives(0);
