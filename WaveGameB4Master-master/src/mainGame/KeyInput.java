@@ -48,7 +48,10 @@ public class KeyInput extends KeyAdapter {
 		int key = e.getKeyCode();
 		this.speed = Player.playerSpeed;
 		
-		
+		//100 points are added when "." is pressed
+		if(key == 46){
+			hud.setScore(100);
+		}
 		
 		//pause functionality
 		if(key == 80){
@@ -72,6 +75,7 @@ public class KeyInput extends KeyAdapter {
 			upgrades.levelSkipAbility();
 			
 		}
+		
 		//Leader board is toggled when "L" key is pressed in menu
 		if (key == 76){
 			if (game.gameState == STATE.Menu){
