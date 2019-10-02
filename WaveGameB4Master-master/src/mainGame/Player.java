@@ -76,6 +76,7 @@ public class Player extends GameObject {
 			if (hud.getExtraLives() == 0) {
 				game.gameState = STATE.GameOver;
 				game.getGameOver().sendScore();
+				hud.setScore(-1*hud.getScore());
 			}
 			else if (hud.getExtraLives() > 0) {// has an extra life, game continues
 				hud.setExtraLives(hud.getExtraLives() - 1);
@@ -97,7 +98,6 @@ public class Player extends GameObject {
 				
 				if (this.getBounds().intersects(pickupObject.getBounds())) {
 					hud.setScore(100);
-					hud.setEndScore(hud.getScore());
 					handler.removePickup(pickupObject);
 					try {
 						hitsoundMIDIPlayer.PlayMidi(pickupcoinMIDIMusic);

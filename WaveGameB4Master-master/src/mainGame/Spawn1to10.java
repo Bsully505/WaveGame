@@ -45,7 +45,7 @@ public class Spawn1to10 {
 		this.game = game;
 		handler.object.clear();
 		hud.health = 100;
-		hud.setScore(0);
+		hud.setScore(-1*hud.getScore());//resets the score
 		hud.setLevel(1);
 		spawnTimer = 10;
 		levelTimer = 150;

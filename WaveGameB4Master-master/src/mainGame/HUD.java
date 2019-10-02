@@ -17,7 +17,6 @@ public class HUD {
 	public double health = 100;
 	private double healthMax = 100;
 	private double greenValue = 255;
-	private int endScore = 000000000;
 	private int score = 00000000000;
 	private int level = 0;
 	private boolean regen = false;
@@ -156,7 +155,7 @@ public class HUD {
 		health = 100;
 		greenValue = 255;
 		healthBarModifier = 2;
-		this.setScore(-(this.getScore()));
+		
 		
 	}
 
@@ -227,10 +226,12 @@ public class HUD {
 	public void setScore(int score) {
 		this.score += score;
 	}
-	
-	public void setEndScore(int score) {
-		this.endScore = score;
-	}
+	/**
+	 * 
+	 * @param score: the original score
+	 * sets the end game score used to show score
+	 */
+
 	
 	
 	public double getHealth(){
@@ -241,9 +242,7 @@ public class HUD {
 		return score;
 	}
 
-	public int getEndScore() {
-		return endScore;
-	}
+	
 
 	public int getLevel() {
 		return level;

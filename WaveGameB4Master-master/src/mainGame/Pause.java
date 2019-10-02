@@ -171,7 +171,7 @@ public class Pause {
 	public void unSaveGame(){
 		hud.resetHealth();
 		hud.setLevel(1);
-		hud.setScore(0);
+		hud.setScore(-1*hud.getScore());
 		spawner1.setLevelNumber(0);
 		spawner1.setLevelsRemaining(10);
 		
