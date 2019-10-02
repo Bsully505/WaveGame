@@ -34,6 +34,7 @@ public class GameOver {
 	private Color retryColor;
 	private String text;
 	private int ticks = 0;
+	private int endScore = 0;
 
 	public GameOver(Game game, Handler handler, HUD hud) throws MalformedURLException {
 		this.game = game;
@@ -46,8 +47,8 @@ public class GameOver {
 	
 	public void sendScore(){
 		
+		endScore = hud.getScore();//used to show score at end 
 		String username = JOptionPane.showInputDialog("Enter a username to submit your score!");
-		
 		String Highscore = new String();
 		Highscore = username+" "+hud.getScore();
 		
@@ -70,7 +71,7 @@ public class GameOver {
 		g.setFont(font2);
 		text = "Level: " + hud.getLevel();
 		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font2, text) / 2, Game.HEIGHT / 2 - 50);
-		text = "Score: " + hud.getEndScore();
+		text = "Score: " + endScore;//The end score is just used as a copy of the score before it gets erased because the round ends 
 		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font2, text) / 2, Game.HEIGHT / 2 + 50);
 		g.setColor(this.retryColor);
 		g.setFont(font2);
