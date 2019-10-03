@@ -37,12 +37,14 @@ public class HUD {
 	private double activeCost = 3000;
 	private int numFreeze=0;
 	private int numRegen=0;
+	private int numRegenMax = 10;//max number allowed for regen perk
 	private int numHealth=0;
 	private int numSpeed=0;
 	private int numShrink=0;
 	private int numArmor=0;
 	private int numClear=0;
-	private double regenValue = 0;
+	private double regenValue = 0; //total value is restricted by numRegenMax after scalar multiplication
+	private double regenValueScalar = .2;//scalar for regenValue, is multiplied by numRegen
 	private ArrayList<String> leaderboard;
 
 	public int getNumClear() {
@@ -56,8 +58,14 @@ public class HUD {
 		return regenValue;
 	}
 
-	public void setregenValue() {
-		this.regenValue += .25;
+	public void setregenValue() { //possible regen fix
+		if(getregenValue() == regenValueScalar * numRegenMax ){
+			this.getregenValue();
+		}
+		else{
+			this.regenValue = regenValueScalar * this.getNumRegen();
+		}
+		System.out.println("Get Regen value: " + this.getregenValue());//debug statement
 	}
 
 	public int getNumFreeze() {
@@ -72,8 +80,13 @@ public class HUD {
 		return numRegen;
 	}
 
-	public void setNumRegen() {
-		this.numRegen += 1;
+	public void setNumRegen() {// possible regen fix
+		if(this.getNumRegen() < numRegenMax) {
+			this.numRegen += 1;
+		}
+		else {
+			this.getNumRegen();
+		}
 	}
 
 	public int getNumHealth() {
@@ -108,6 +121,7 @@ public class HUD {
 		this.numArmor += 1;
 	}
 
+	//need to find where click handling is, this effects locked out skills, increasing costs
 	public double getCostMultipier() {
 		return costMultipier;
 	}
