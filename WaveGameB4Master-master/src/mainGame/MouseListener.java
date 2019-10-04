@@ -360,11 +360,18 @@ public class MouseListener extends MouseAdapter {
 
 			//Health Regen
 			if(mouseOver(mx,my,1050,125,125,125)){
-				pause.setDescription("Regenerates player's health at 0.25 HP per tick per purchase.");
+				String desc1 = "Regenerates player's health at " + hud.getRegenValueScalar();
+				String desc2 = " HP per tick per purchase.";
+				String desc = desc1 + desc2;
+				pause.setDescription(desc);
 			}
 			//Health Increase
 			if(mouseOver(mx,my,1250,125,125,125)){
-				pause.setDescription("Increases player's maximum HP and heals the player to full.");
+				String desc1 = "Increases player's maximum HP by " + (int)hud.getHealthValueScalar();
+				String desc2 = " and maxes player hp.";
+				String desc = desc1 + "\r\n" + desc2;//attempted to do a new line, the method under pause has no support
+				pause.setDescription(desc);
+
 			}
 			//Shrink
 			if(mouseOver(mx,my,1450,125,125,125)){
