@@ -174,7 +174,7 @@ public class Game extends Canvas implements Runnable {
 	public void setGameStats(){
 		
 		hud.setLevel(savedGame.getLevel());
-		hud.setHealth(savedGame.getHealth());
+		hud.setHealthValueMax(savedGame.getHealth());
 		hud.setScore(savedGame.getScore());
 		
 		
