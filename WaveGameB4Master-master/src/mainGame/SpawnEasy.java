@@ -41,7 +41,11 @@ public class SpawnEasy {
 		this.hud = hud;
 		this.game = game;
 		handler.object.clear();
-		hud.health = 100;
+		hud.reset();
+		//hud.resetHealth();
+		//hud.resetRegen();
+		//hud.setHealthValueMax(hud.getBaseHealth());
+		//hud.health = 100;
 		hud.setScore(0);
 		hud.setLevel(1);
 		spawnTimer = 10;
