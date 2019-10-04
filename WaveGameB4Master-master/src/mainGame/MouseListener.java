@@ -255,11 +255,13 @@ public class MouseListener extends MouseAdapter {
 			//Health Regen
 			if (mouseOver(mx, my, 100, 125, 125, 125)) {
 				if(hud.getScore()>=hud.getCost()) {
-					hud.setScore(-(int)hud.getCost());
-					hud.setCost(hud.getCost()*hud.getCostMultipier());
-					hud.setRegen();
-					hud.setNumRegen();
-					hud.setregenValue();
+					if (hud.getNumRegen() != hud.getNumRegenMax()) {// modify to check for max upgrade or not.
+						hud.setScore(-(int) hud.getCost());
+						hud.setCost(hud.getCost() * hud.getCostMultipier());
+						hud.setRegen();
+						hud.setNumRegen();
+						hud.setregenValue();
+					}
 				}
 
 			}
