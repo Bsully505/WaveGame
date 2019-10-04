@@ -48,7 +48,7 @@ public class Upgrades {
 	}
 
 	public void healthIncrease() {
-		hud.healthIncrease();
+		hud.getHealthValueMax();
 	}
 
 	public void healthRegeneration() {
@@ -175,8 +175,7 @@ public class Upgrades {
 	public void resetUpgrades() {
 		Player.playerSpeed = 10;
 		Player.diagonalPlayerSpeed = 8; //hard coded values, should use a separate file to store this data
-		hud.resetHealth();
-		hud.resetRegen();
+		hud.reset();
 		hud.setExtraLives(0);
 		player.setPlayerSize(32);
 		upgradeScreen.resetPaths();
