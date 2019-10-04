@@ -69,6 +69,10 @@ public class HUD {
 	public double getHealthValueMax(){
 		return healthValueMax;
 	}
+	public double getRegenValueScalar(){
+		return regenValueScalar;
+	}
+
 	public void setHealthValueMax(double healthMax){
 		this.healthValueMax = healthMax;
 		if(getHealthValueMax() == (BASE_HEALTH + (healthValueScalar * numHealthMax))){
@@ -87,6 +91,11 @@ public class HUD {
 	public void setHealthValue(double health){
 		this.healthValue = health;
 	}
+	public double getHealthValueScalar(){
+		return healthValueScalar;
+	}
+
+
 
 	public double getBaseHealth(){
 		return BASE_HEALTH;
