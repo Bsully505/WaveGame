@@ -52,7 +52,8 @@ public class MouseListener extends MouseAdapter {
 		if (game.gameState == STATE.GameOver) { //geting out of the game when game is over
 			handler.object.clear();
 			upgrades.resetUpgrades();
-			hud.health = 100;
+			//hud.health = 100; //original was not private
+			hud.reset();
 			hud.setScore(0);
 			hud.setLevel(1);
 			spawnerE.restart();
@@ -72,7 +73,8 @@ public class MouseListener extends MouseAdapter {
 			System.out.println("ass and titties");
 			handler.object.clear();
 			upgrades.resetUpgrades();
-			hud.health = 100;
+			//hud.health = 100; //original was not private
+			hud.reset();
 			hud.setScore(0);
 			hud.setLevel(1);
 			spawnerE.restart();
@@ -218,7 +220,8 @@ public class MouseListener extends MouseAdapter {
 					if(!pause.getGameSave()){
 						handler.object.clear();
 						upgrades.resetUpgrades();
-						hud.health = 100;
+						hud.reset();
+						//hud.health = 100;//was apparently not previously private
 						hud.setScore(0);
 						hud.setLevel(1);
 						spawner.restart();
@@ -255,21 +258,27 @@ public class MouseListener extends MouseAdapter {
 			//Health Regen
 			if (mouseOver(mx, my, 100, 125, 125, 125)) {
 				if(hud.getScore()>=hud.getCost()) {
-					hud.setScore(-(int)hud.getCost());
-					hud.setCost(hud.getCost()*hud.getCostMultipier());
-					hud.setRegen();
-					hud.setNumRegen();
-					hud.setregenValue();
+					if (hud.getNumRegen() != hud.getNumRegenMax()) {// modify to check for max upgrade or not.
+						hud.setScore(-(int) hud.getCost());
+						hud.setCost(hud.getCost() * hud.getCostMultipier());
+						hud.setRegen();
+						hud.setNumRegen();
+						hud.setregenValue();
+					}
 				}
 
 			}
 			//Health Increase
 			if (mouseOver(mx, my, 300, 125, 125, 125)) {
 				if(hud.getScore()>=hud.getCost()) {
-					hud.setScore(-(int)hud.getCost());
-					hud.setCost(hud.getCost()*hud.getCostMultipier());
-					hud.healthIncrease();
-					hud.setNumHealth();
+					if(hud.getNumHealth() != hud.getNumHealthMax()){
+						hud.setScore(-(int)hud.getCost());
+						hud.setCost(hud.getCost()*hud.getCostMultipier());
+						hud.setHealth();
+						hud.setNumHealth();
+						hud.setHealthValueMax(hud.getHealthValueMax());
+					}
+
 			}
 			}
 			//Shrink

@@ -14,16 +14,18 @@ import java.util.Arrays;
  */
 
 public class HUD {
-	public double health = 100;
-	private double healthMax = 100;
+	private static double BASE_HEALTH = 100; //base value for hp, if changing healthValue, change this as well
+	private double healthValue = 100; // updated to healthValueMax
+	private double healthValueMax = 100; //total value is restricted by numHealthMax after scalar multiplication
+	private double healthValueScalar = 20;//scalar for hp bar in upgrades section
 	private double greenValue = 255;
 	private int score = 00000000000;
 	private int level = 0;
 	private boolean regen = false;
 	private int timer = 10;
 	private int healthBarWidth = 400;
-	private double healthBarModifier = 2.5;
-	private boolean doubleHealth = false;
+	private double healthBarModifier = 2.5;//unsure if purely visual or not?
+	private boolean health = false;
 	private String ability = "";
 	private int abilityUses = 0;
 	private Color scoreColor = Color.white;
@@ -34,15 +36,23 @@ public class HUD {
 	private String highScoreString = "";
 	private double costMultipier = 1.25;
 	private double cost = 500;
+	private static double COST = 500;
 	private double activeCost = 3000;
+	private static double ACTIVECOST =3000;
 	private int numFreeze=0;
+	private static int NUM_REGEN_VALUE = 0;
 	private int numRegen=0;
+	private int numRegenMax = 10;//max number allowed for regen perk
 	private int numHealth=0;
+	private static int NUMHEALTH = 0;
+	private int numHealthMax = 10;//maximum number allowed for health perk
 	private int numSpeed=0;
 	private int numShrink=0;
 	private int numArmor=0;
 	private int numClear=0;
-	private double regenValue = 0;
+	private double regenValue = 0; //total value is restricted by numRegenMax after scalar multiplication
+	private double regenValueScalar = .1;//scalar for regenValue, is multiplied by numRegen
+
 	private ArrayList<String> leaderboard;
 
 	public int getNumClear() {
@@ -52,12 +62,44 @@ public class HUD {
 	public void setNumClear() {
 		this.numClear += 1;
 	}
+
 	public double getregenValue() {
 		return regenValue;
 	}
+	public double getHealthValueMax(){
+		return healthValueMax;
+	}
+	public void setHealthValueMax(double healthMax){
+		this.healthValueMax = healthMax;
+		if(getHealthValueMax() == (BASE_HEALTH + (healthValueScalar * numHealthMax))){
+			this.getHealthValueMax();
+		}
+		else{
+			this.healthValueMax = (BASE_HEALTH + (healthValueScalar * this.getNumHealth()));
+			this.healthValue = healthValueMax;
+			healthBarModifier = (250/healthValueMax);
+			healthBarWidth = 4*(int)healthValueMax;
+		}
+	}
+	public double getHealthValue(){
+		return healthValue;
+	}
+	public void setHealthValue(double health){
+		this.healthValue = health;
+	}
 
-	public void setregenValue() {
-		this.regenValue += .25;
+	public double getBaseHealth(){
+		return BASE_HEALTH;
+	}
+
+	public void setregenValue() { //possible regen fix
+		if(getregenValue() == regenValueScalar * numRegenMax ){
+			this.getregenValue();
+		}
+		else{
+			this.regenValue = regenValueScalar * this.getNumRegen();
+		}
+		System.out.println("Get Regen value: " + this.getregenValue());//debug statement
 	}
 
 	public int getNumFreeze() {
@@ -72,8 +114,16 @@ public class HUD {
 		return numRegen;
 	}
 
-	public void setNumRegen() {
-		this.numRegen += 1;
+	public void setNumRegen() {// possible regen fix
+		if(this.getNumRegen() < numRegenMax) {
+			this.numRegen += 1;
+		}
+		else {
+			this.getNumRegen();
+		}
+	}
+	public int getNumRegenMax(){//used to prevent paying for regen skill that are maxed out, in MouseListener.java
+		return numRegenMax;
 	}
 
 	public int getNumHealth() {
@@ -81,7 +131,16 @@ public class HUD {
 	}
 
 	public void setNumHealth() {
-		this.numHealth += 1;
+		if(this.getNumHealth() < numHealthMax){
+			this.numHealth += 1;
+		}
+		else{
+			this.getNumHealth();
+		}
+	}
+
+	public int getNumHealthMax(){
+		return numHealthMax;
 	}
 
 	public int getNumSpeed() {
@@ -108,6 +167,7 @@ public class HUD {
 		this.numArmor += 1;
 	}
 
+
 	public double getCostMultipier() {
 		return costMultipier;
 	}
@@ -132,32 +192,31 @@ public class HUD {
 	}
 
 	public void tick() {
-		health = Game.clamp(health, 0, health);
-		health = Game.clamp(health, 0, healthMax);
+		healthValue = Game.clamp(healthValue, 0, healthValue);
+		healthValue = Game.clamp(healthValue, 0, healthValueMax);
 		greenValue = Game.clamp(greenValue, 0, 255);
-		greenValue = health * healthBarModifier;
+		greenValue = healthValue * healthBarModifier;
 		
 		
 		
-		//each tick generate a random # and if that random number equals a specidied #, draw a coin
+		//each tick generate a random # and if that random number equals a specified #, draw a coin
 		
 		if (regen) {// regenerates health if that ability has been unlocked
 			timer--;
 			if (timer == 0) {
-				health += this.getregenValue();
+				healthValue += this.getregenValue();
 				timer = 10;
 			}
-			health = Game.clamp(health, 0, healthMax);
+			healthValue = Game.clamp(healthValue, 0, healthValueMax);
 		}
 	}
 	
 	public void reset(){
-		health = 100;
-		greenValue = 255;
-		healthBarModifier = 2;
-		
-		
+		resetCost();
+		resetRegen();
+		resetHealth();
 	}
+
 
 	public void render(Graphics g) {
 		
@@ -166,8 +225,8 @@ public class HUD {
 		g.setColor(Color.GRAY);
 		g.fillRect(15, 15, healthBarWidth, 64);
 		g.setColor(new Color(75, (int) greenValue, 0));
-		g.fillRect((int) 15, (int) 15, (int) health * 4, 64);
-		if (regen && health < healthMax)
+		g.fillRect((int) 15, (int) 15, (int) healthValue * 4, 64);
+		if (regen && healthValue < healthValueMax)
 			g.setColor(regenColor);
 		else
 			g.setColor(scoreColor);
@@ -232,17 +291,9 @@ public class HUD {
 	 * sets the end game score used to show score
 	 */
 
-	
-	
-	public double getHealth(){
-		return health;
-	}
-
 	public int getScore() {
 		return score;
 	}
-
-	
 
 	public int getLevel() {
 		return level;
@@ -252,8 +303,15 @@ public class HUD {
 		this.level = level;
 	}
 
-	public void setHealth(double health) {
+	public boolean getHealth(){
+		return health;
+	}
+
+	/*public void setHealth(double health) {//original
 		this.health = health;
+	}*/
+	public void setHealth() {
+		health = true;
 	}
 
 	public void setRegen() {
@@ -262,6 +320,8 @@ public class HUD {
 
 	public void resetRegen() {
 		regen = false;
+		regenValue = NUM_REGEN_VALUE;
+		numRegen = NUM_REGEN_VALUE;
 	}
 
 	public void setExtraLives(int lives) {
@@ -272,24 +332,36 @@ public class HUD {
 		return this.extraLives;
 	}
 
+	/*
 	public void healthIncrease() {
-		doubleHealth = true;
-		healthMax = healthMax+50;
-		this.health = healthMax;
-		healthBarModifier = (250/healthMax);
-		healthBarWidth = 4*(int)healthMax;
-	}
+		//healthValueMax = healthValueMax+healthScalar;
+		//this.healthValue = healthValueMax;
+		healthBarModifier = (250/healthValueMax);
+		healthBarWidth = 4*(int)healthValueMax;
+	}*/
 
 	public void resetHealth() {
-		doubleHealth = false;
-		healthMax = 100;
-		this.health = healthMax;
+
+		/*health = false;
+		healthValueMax = BASE_HEALTH;
+		this.healthValue = healthValueMax;
+		healthBarModifier = 2.5;
+		healthBarWidth = 400;*/
+		health = false;
+		numHealth = NUMHEALTH;
+		healthValueMax = BASE_HEALTH;//additional piece
+		healthValue = healthValueMax;
 		healthBarModifier = 2.5;
 		healthBarWidth = 400;
+		greenValue = 255;
+	}
+	public void resetCost(){
+		cost = COST;
+		activeCost = ACTIVECOST;
 	}
 
 	public void restoreHealth() {
-		this.health = healthMax;
+		this.healthValue = healthValueMax;
 	}
 
 	public void setHighScore(String data) {

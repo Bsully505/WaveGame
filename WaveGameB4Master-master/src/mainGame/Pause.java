@@ -147,7 +147,7 @@ public class Pause {
 	
 	//saves the game gets elements from different classes
 	public void saveGame(){
-		double health = hud.getHealth();
+		double health = hud.getHealthValueMax();
 		int score = hud.getScore();
 		int level = hud.getLevel();
 		int enemy = 0;
