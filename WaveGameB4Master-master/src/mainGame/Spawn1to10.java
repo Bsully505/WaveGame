@@ -44,7 +44,9 @@ public class Spawn1to10 {
 		this.hud = hud;
 		this.game = game;
 		handler.object.clear();
-		hud.health = 100;
+		hud.reset();
+		//hud.setHealthValueMax(hud.getBaseHealth());
+		//hud.health = 100; //original statement
 		hud.setScore(-1*hud.getScore());//resets the score
 		hud.setLevel(1);
 		spawnTimer = 10;
