@@ -88,6 +88,9 @@ public class HUD {
 			this.getNumRegen();
 		}
 	}
+	public int getNumRegenMax(){//used to prevent paying for regen skill that are maxed out, in MouseListener.java
+		return numRegenMax;
+	}
 
 	public int getNumHealth() {
 		return numHealth;
@@ -153,7 +156,7 @@ public class HUD {
 		
 		
 		
-		//each tick generate a random # and if that random number equals a specidied #, draw a coin
+		//each tick generate a random # and if that random number equals a specified #, draw a coin
 		
 		if (regen) {// regenerates health if that ability has been unlocked
 			timer--;
