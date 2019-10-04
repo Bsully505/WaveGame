@@ -72,7 +72,7 @@ public class Player extends GameObject {
 	}
 
 	public void checkIfDead() throws JSONException {
-		if (hud.health <= 0) {// player is dead, game over!
+		if (hud.getHealthValue() <= 0) {// player is dead, game over!
 			if (hud.getExtraLives() == 0) {
 				game.gameState = STATE.GameOver;
 				game.getGameOver().sendScore();
@@ -80,7 +80,7 @@ public class Player extends GameObject {
 			}
 			else if (hud.getExtraLives() > 0) {// has an extra life, game continues
 				hud.setExtraLives(hud.getExtraLives() - 1);
-				hud.setHealth(100);
+				hud.setHealthValueMax(hud.getHealthValueMax());
 			}
 		}
 	}
@@ -119,7 +119,9 @@ public class Player extends GameObject {
 					|| tempObject.getId() == ID.BossEye) {// tempObject is an enemy
 				// collision code
 				if (getBounds().intersects(tempObject.getBounds()) && tempInvincible == 0) {// player hit an enemy
-					hud.health -= damage;
+					double curHealth = hud.getHealthValue();
+					curHealth -= damage;
+					hud.setHealthValue(curHealth);
 					hud.updateScoreColor(Color.red);
 					wasHit = true;
 					tempInvincible = 15;
@@ -129,7 +131,10 @@ public class Player extends GameObject {
 				// Allows player time to get out of upper area where they will get hurt once the
 				// boss starts moving
 				if (this.y <= 138 && tempObject.isMoving) {
-					hud.health -= 2;
+					double curHealth = hud.getHealthValue();
+					curHealth -= 2;
+					hud.setHealthValue(curHealth);
+					//hud.health -= 2; //original value
 					hud.updateScoreColor(Color.red);
 					wasHit = true;
 				}
