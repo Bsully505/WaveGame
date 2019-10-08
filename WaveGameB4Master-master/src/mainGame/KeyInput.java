@@ -50,6 +50,9 @@ public class KeyInput extends KeyAdapter {
 		
 		//100 points are added when "." is pressed
 		if(key == 46){
+			if(e.isShiftDown()){
+				hud.setScore(10000);
+			}
 			hud.setScore(100);
 		}
 		
