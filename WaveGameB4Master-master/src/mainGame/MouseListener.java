@@ -284,30 +284,35 @@ public class MouseListener extends MouseAdapter {
 			//Shrink
 			if (mouseOver(mx, my, 500, 125, 125, 125)) {
 				if(hud.getScore()>=hud.getCost()) {
-					hud.setScore(-(int)hud.getCost());
-					hud.setCost(hud.getCost()*hud.getCostMultipier());
-					upgrades.decreasePlayerSize();
-					hud.setNumShrink();
-			}
+					if(hud.getNumShrink() != hud.getNumShrinkMax()){
+						hud.setScore(-(int)hud.getCost());
+						hud.setCost(hud.getCost()*hud.getCostMultipier());
+						upgrades.decreasePlayerSize();
+						hud.setNumShrink();
+					}
+				}
 			}
 			//Damage Resistance
 			if (mouseOver(mx, my, 700, 125, 125, 125)) {
 				if(hud.getScore()>=hud.getCost()) {
-					hud.setScore(-(int)hud.getCost());
-					hud.setCost(hud.getCost()*hud.getCostMultipier());
-					upgrades.improvedDamageResistance();
-					hud.setNumArmor();
+					if(hud.getNumArmor() != hud.getNumArmorMax()){
+						hud.setScore(-(int)hud.getCost());
+						hud.setCost(hud.getCost()*hud.getCostMultipier());
+						upgrades.improvedDamageResistance();
+						hud.setNumArmor();
+					}
 				}
-
 			}
 			//Speed Boost
 			if (mouseOver(mx, my, 100, 325, 125, 125)) {
 				if(hud.getScore()>=hud.getCost()) {
-					hud.setScore(-(int)hud.getCost());
-					hud.setCost(hud.getCost()*hud.getCostMultipier());
-					upgrades.speedBoost();
-					hud.setNumSpeed();
-			}
+					if(hud.getNumSpeed() != hud.getNumSpeedMax()){
+						hud.setScore(-(int)hud.getCost());
+						hud.setCost(hud.getCost()*hud.getCostMultipier());
+						upgrades.speedBoost();
+						hud.setNumSpeed();
+					}
+				}
 			}
 			//Extra Life
 			if (mouseOver(mx, my, 300, 325, 125, 125)) {
@@ -375,15 +380,24 @@ public class MouseListener extends MouseAdapter {
 			}
 			//Shrink
 			if(mouseOver(mx,my,1450,125,125,125)){
-				pause.setDescription("Shrinks the player.");
+				String desc1 = "Shrinks the player by ";
+				String desc2 = ""+ (int)(upgrades.getSizeScalar()*100)+"%";
+				String desc = desc1 + desc2;
+				pause.setDescription(desc);
 			}
 			//Damage Resistance
 			if(mouseOver(mx,my,1650,125,125,125)){
-				pause.setDescription("Lowers damage taken by 25%.");
+				String desc1 = "Lowers damage taken by ";
+				String desc2 = (int)(upgrades.getDRScalar()*100)+"%.";
+				String desc = desc1 + desc2;
+				pause.setDescription(desc);
 			}
 			//Speed Boost
 			if(mouseOver(mx,my,1050,325,125,125)){
-				pause.setDescription("Increases player's speed.");
+				String desc1 = "Increases player's speed by ";
+				String desc2 = (int)((upgrades.getSpeedBoostScalar()*100)-100) +"%";
+				String desc = desc1 + desc2;
+				pause.setDescription(desc);
 			}
 			//Extra Life
 			if(mouseOver(mx,my,1250,325,125,125)){
