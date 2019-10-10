@@ -7,6 +7,7 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.io.*;
 import java.net.*;
+import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -20,7 +21,7 @@ import io.socket.SocketIOException;
 
 /**
  * The game over screen
- * 
+ *
  * @author Brandon Loehle 5/30/16
  *
  */
@@ -35,8 +36,13 @@ public class GameOver {
 	private String text;
 	private int ticks = 0;
 	private int endScore = 0;
+	private File scoresFile = new File("src\\mainGame\\scores.txt");
+	private Scanner scan = new Scanner(scoresFile);
+	private FileWriter fWriter = new FileWriter(scoresFile, true);
+	private BufferedWriter bWriter = new BufferedWriter(fWriter);
+	private PrintWriter pWriter = new PrintWriter(bWriter);
 
-	public GameOver(Game game, Handler handler, HUD hud) throws MalformedURLException {
+	public GameOver(Game game, Handler handler, HUD hud) throws IOException {
 		this.game = game;
 		this.handler = handler;
 		this.hud = hud;
@@ -44,18 +50,21 @@ public class GameOver {
 		this.retryColor = Color.white;
 		hud.reset();
 	}
-	
-	public void sendScore(){
-		
-		endScore = hud.getScore();//used to show score at end 
+
+	public void sendScore() {
+
+		endScore = hud.getScore();//used to show score at end
 		String username = JOptionPane.showInputDialog("Enter a username to submit your score!");
 		String Highscore = new String();
-		Highscore = username+" "+hud.getScore();
-		
+		Highscore = username+" "+ hud.getScore();
+		pWriter.append(Highscore);
+		pWriter.append("\n");
+		pWriter.close();
+
 
 	}
 
-	public void tick(){
+	public void tick() {
 		handler.clearPlayer();
 		handler.clearCoins();
 		hud.reset();
@@ -71,12 +80,12 @@ public class GameOver {
 		g.setFont(font2);
 		text = "Level: " + hud.getLevel();
 		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font2, text) / 2, Game.HEIGHT / 2 - 50);
-		text = "Score: " + endScore;//The end score is just used as a copy of the score before it gets erased because the round ends 
+		text = "Score: " + endScore;//The end score is just used as a copy of the score before it gets erased because the round ends
 		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font2, text) / 2, Game.HEIGHT / 2 + 50);
 		g.setColor(this.retryColor);
 		g.setFont(font2);
 		text = "Click anywhere to play again";
-		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font2, text) / 2, Game.HEIGHT / 2 + 150);	
+		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font2, text) / 2, Game.HEIGHT / 2 + 150);
 	}
 
 	public void flash() {
@@ -91,7 +100,7 @@ public class GameOver {
 
 	/**
 	 * Function for getting the pixel width of text
-	 * 
+	 *
 	 * @param font
 	 *            the Font of the test
 	 * @param text

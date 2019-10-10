@@ -90,7 +90,7 @@ public class Game extends Canvas implements Runnable {
 	 * @throws MalformedURLException 
 	 */
 
-	public Game() throws MalformedURLException {
+	public Game() throws IOException {
 
 		scaleFactor = (double) drawWidth / (double) WIDTH;
 		
@@ -557,7 +557,7 @@ public class Game extends Canvas implements Runnable {
 		return gameOver;
 	}
 	
-	public static void main(String[] args) throws MalformedURLException {
+	public static void main(String[] args) throws IOException {
 		new Game();
 	}
 }
