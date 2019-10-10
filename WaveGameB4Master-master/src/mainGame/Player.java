@@ -26,10 +26,14 @@ public class Player extends GameObject {
 	private HUD hud;
 	private Game game;
 	private double damage;
+	private static double DAMAGE_DEFAULT = 7;
+	private static int PLAYER_SIZE = 32;
 	private int playerWidth, playerHeight;
 	private int tempInvincible = 0;
-	public static int playerSpeed = 10;
-	public static int diagonalPlayerSpeed = 8;
+	public static int PLAYER_SPEED = 10;
+	public  int playerSpeed = PLAYER_SPEED;
+	public static int DIAG_PLAYER_SPEED = 8;
+	public  int diagonalPlayerSpeed = DIAG_PLAYER_SPEED;
 	private SimpleMidi hitsoundMIDIPlayer;
 	private String hitsoundMIDIMusic = "HitsoundPart2.mid";
 	private String pickupcoinMIDIMusic = "pickupcoin.mid";
@@ -41,9 +45,9 @@ public class Player extends GameObject {
 		this.handler = handler;
 		this.hud = hud;
 		this.game = game;
-		this.damage = 7;
-		playerWidth = 32;
-		playerHeight = 32;
+		this.damage = DAMAGE_DEFAULT;//7 test to ensure each lvl change does not cause a reset
+		playerWidth = PLAYER_SIZE;//32
+		playerHeight = PLAYER_SIZE;//32
 		hitsoundMIDIPlayer = new SimpleMidi();
 	}
 
@@ -159,12 +163,38 @@ public class Player extends GameObject {
 	public double getDamage(){
 		return this.damage;
 	}
+	public double getDamageDefault(){
+		return this.DAMAGE_DEFAULT;
+	}
 
 	public void setPlayerSize(double size) {
 		this.playerWidth = (int)size;
 		this.playerHeight = (int)size;
 	}
+
+	public double getDefaultPlayerSize(){
+		return this.PLAYER_SIZE;
+	}
+
 	public double getPlayerSize(){
 		return this.playerWidth;
+	}
+
+	public int getPlayerSpeed(){
+		return playerSpeed;
+	}
+
+	public int getDiagonalPlayerSpeed(){
+		return diagonalPlayerSpeed;
+	}
+
+	public void setPlayerSpeed(double spdScalar){
+		playerSpeed*= spdScalar;
+		diagonalPlayerSpeed*= spdScalar;
+	}
+
+	public void resetSpeed(){
+		playerSpeed = PLAYER_SPEED;
+		diagonalPlayerSpeed = DIAG_PLAYER_SPEED;
 	}
 }
