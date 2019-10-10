@@ -29,8 +29,8 @@ public class KeyInput extends KeyAdapter {
 	// uses current handler created in Game as parameter
 	public KeyInput(Pause pause, Handler handler, Game game, HUD hud, Player player, Spawn1to10 spawner, Upgrades upgrades) {
 		this.handler = handler;
-		this.speed = Player.playerSpeed;
-		this.diagonalSpeed = Player.diagonalPlayerSpeed;
+		//this.speed = player.getPlayerSpeed();// if this causes issues, roll back change
+		//this.diagonalSpeed = player.getDiagonalPlayerSpeed();// if this causes issues, roll back change
 		this.game = game;
 		this.player = player;
 		this.hud = hud;
@@ -46,12 +46,13 @@ public class KeyInput extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		this.speed = Player.playerSpeed;
+		this.speed = player.getPlayerSpeed();
+		this.diagonalSpeed = player.getDiagonalPlayerSpeed();//previously speed would not increase on diagonal
 		
 		//100 points are added when "." is pressed
 		if(key == 46){
 			if(e.isShiftDown()){
-				hud.setScore(10000);
+				hud.setScore(10000);//points added when "." is pressed
 			}
 			hud.setScore(100);
 		}
@@ -92,7 +93,7 @@ public class KeyInput extends KeyAdapter {
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
 
-			// using only if's allows multiple keys to be triggered at once
+			// using only if's allows multiple keys to be triggered at once //nullpointer detected at line 97
 			if (tempObject.getId() == ID.Player) {// find the player object, as he is the only one the user can control
 				// key events for player 1
 				//Goes UP
