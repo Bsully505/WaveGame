@@ -46,9 +46,15 @@ public class HUD {
 	private int numHealth=0;
 	private static int NUMHEALTH = 0;
 	private int numHealthMax = 10;//maximum number allowed for health perk
-	private int numSpeed=0;
-	private int numShrink=0;
-	private int numArmor=0;
+	private static int NUM_SPEED = 0;
+	private int numSpeed=NUM_SPEED;
+	private static int NUM_SPEED_MAX = 1;
+	private static int NUM_SHRINK = 0;
+	private int numShrink=NUM_SHRINK;
+	private int numShrinkMax = 5;
+	private static int NUM_ARMOR = 0;
+	private int numArmor=NUM_ARMOR;
+	private static int numArmorMax = 5;
 	private int numClear=0;
 	private double regenValue = 0; //total value is restricted by numRegenMax after scalar multiplication
 	private double regenValueScalar = .1;//scalar for regenValue, is multiplied by numRegen
@@ -159,21 +165,41 @@ public class HUD {
 	public void setNumSpeed() {
 		this.numSpeed += 1;
 	}
+	public int getNumSpeedMax(){
+		return NUM_SPEED_MAX;
+	}
 
 	public int getNumShrink() {
 		return numShrink;
 	}
 
 	public void setNumShrink() {
-		this.numShrink += 1;
+		if(this.getNumShrink() < numShrinkMax){
+			this.numShrink += 1;
+		}
+		else {
+			this.getNumShrink();
+		}
+	}
+	public int getNumShrinkMax(){
+		return numShrinkMax;
 	}
 
 	public int getNumArmor() {
 		return numArmor;
 	}
+	public int getNumArmorMax(){
+		return numArmorMax;
+	}
 
 	public void setNumArmor() {
-		this.numArmor += 1;
+		if(this.getNumArmor() < numArmorMax){
+			this.numArmor += 1;
+		}
+		else {
+			this.getNumArmor();
+		}
+
 	}
 
 
@@ -220,10 +246,13 @@ public class HUD {
 		}
 	}
 	
-	public void reset(){
+	public void reset(){ //resets all abilities back to zero state
 		resetCost();
 		resetRegen();
 		resetHealth();
+		resetShrink();
+		resetArmor();
+		resetSpeed();
 	}
 
 
@@ -327,11 +356,6 @@ public class HUD {
 		regen = true;
 	}
 
-	public void resetRegen() {
-		regen = false;
-		regenValue = NUM_REGEN_VALUE;
-		numRegen = NUM_REGEN_VALUE;
-	}
 
 	public void setExtraLives(int lives) {
 		this.extraLives = lives;
@@ -349,6 +373,18 @@ public class HUD {
 		healthBarWidth = 4*(int)healthValueMax;
 	}*/
 
+///////////////////individual power-ups reset section/////////////////////
+	public void resetRegen() {
+		regen = false;
+		regenValue = NUM_REGEN_VALUE;
+		numRegen = NUM_REGEN_VALUE;
+	}
+	public void resetShrink(){
+		numShrink = NUM_SHRINK;
+	}
+	public void resetArmor(){
+		numArmor = NUM_ARMOR;
+	}
 	public void resetHealth() {
 
 		/*health = false;
@@ -368,10 +404,15 @@ public class HUD {
 		cost = COST;
 		activeCost = ACTIVECOST;
 	}
+	public void resetSpeed(){
+		numSpeed = NUM_SPEED;
+	}
+///////////////////individual power-ups reset section/////////////////////
 
 	public void restoreHealth() {
 		this.healthValue = healthValueMax;
 	}
+
 
 	public void setHighScore(String data) {
 		
