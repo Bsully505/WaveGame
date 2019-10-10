@@ -18,6 +18,9 @@ public class Upgrades {
 	private Spawn10to20 spawner2;
 	private UpgradeScreen upgradeScreen;
 	private String ability = "";
+	private static double SIZE_SCALAR = .1;
+	private static double DAMAGE_RESISTANCE_SCALAR = .05;
+	private static double SPEED_BOOST_SCALAR = 1.5;
 
 	public Upgrades(Game game, Handler handler, HUD hud, UpgradeScreen upgradeScreen, Player player, SpawnEasy spawnerE, Spawn1to10 spawner,
 			Spawn10to20 spawner2) {
@@ -39,8 +42,17 @@ public class Upgrades {
 		}
 	}
 
-	public void decreasePlayerSize() {
-		player.setPlayerSize(player.getPlayerSize()/1.5);
+	public void decreasePlayerSize() {//changed math to not have reduced outcomes per purchase
+		//size shrink reduced from .5 to .1
+		player.setPlayerSize(player.getDefaultPlayerSize() - (player.getDefaultPlayerSize()*(SIZE_SCALAR*hud.getNumShrink())));
+		//player.setPlayerSize(player.getPlayerSize()/SIZE_SCALAR);//old method had reduced returns per purchase
+	}
+
+	public double getSizeScalar(){
+		return SIZE_SCALAR;
+	}
+	public double getSpeedBoostScalar(){
+		return SPEED_BOOST_SCALAR;
 	}
 
 	public void extraLife() {
@@ -55,9 +67,15 @@ public class Upgrades {
 		hud.setRegen();
 	}
 
-	public void improvedDamageResistance() {
-		player.setDamage(player.getDamage()/1.5);
+	public void improvedDamageResistance() {//changed math to not have reduced outcomes per purchase
+		//changed from .5 to .05
+		player.setDamage(player.getDamageDefault()-(player.getDamageDefault()*(DAMAGE_RESISTANCE_SCALAR*hud.getNumArmor())));
+		//player.setDamage(player.getDamage()/DAMAGE_RESISTANCE_SCALAR);
 	}
+	public double getDRScalar(){
+		return DAMAGE_RESISTANCE_SCALAR;
+	}
+
 
 	public void levelSkipAbility() {
 		handler.clearEnemies();
@@ -87,8 +105,9 @@ public class Upgrades {
 	}
 
 	public void speedBoost() {
-		Player.playerSpeed *= 2;
-		Player.diagonalPlayerSpeed *= 2;
+		player.setPlayerSpeed(SPEED_BOOST_SCALAR);
+		//Player.playerSpeed *= SPEED_BOOST_SCALAR;//2
+		//Player.diagonalPlayerSpeed *= SPEED_BOOST_SCALAR;//2
 	}
 
 	public String getAbility() {
@@ -173,11 +192,10 @@ public class Upgrades {
 	}
 
 	public void resetUpgrades() {
-		Player.playerSpeed = 10;
-		Player.diagonalPlayerSpeed = 8; //hard coded values, should use a separate file to store this data
+		player.resetSpeed();
 		hud.reset();
 		hud.setExtraLives(0);
-		player.setPlayerSize(32);
+		player.setPlayerSize(player.getDefaultPlayerSize());
 		upgradeScreen.resetPaths();
 	}
 
