@@ -36,7 +36,7 @@ public class GameOver {
 	private String text;
 	private int ticks = 0;
 	private int endScore = 0;
-	private File scoresFile = new File("src\\mainGame\\scores.txt");
+	private File scoresFile = new File("src//mainGame//scores.txt");
 	private Scanner scan = new Scanner(scoresFile);
 	private FileWriter fWriter = new FileWriter(scoresFile, true);
 	private BufferedWriter bWriter = new BufferedWriter(fWriter);
