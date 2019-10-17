@@ -141,7 +141,7 @@ public class Menu {
 			g.drawRect(1450, 300, 350, 400);
 			g.setFont(font2);
 			g.setColor(Color.white);
-			g.drawString("Easy Mode",1470, 510);
+			g.drawString("Hard Mode",1470, 510);
 			
 			g.setColor(Color.white);
 			g.drawRect(1050, 735, 750, 250);
