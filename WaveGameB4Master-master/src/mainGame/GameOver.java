@@ -107,6 +107,8 @@ public class GameOver {
 	 *            the String of text
 	 * @return width in pixels of text
 	 */
+	
+	//test comment henok
 	public int getTextWidth(Font font, String text) {
 		AffineTransform at = new AffineTransform();
 		FontRenderContext frc = new FontRenderContext(at, true, true);
