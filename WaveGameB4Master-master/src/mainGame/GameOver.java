@@ -59,7 +59,7 @@ public class GameOver {
 		Highscore = username+" "+ hud.getScore();
 		pWriter.append(Highscore);
 		pWriter.append("\n");
-		pWriter.close();
+		pWriter.flush();
 
 
 	}
