@@ -80,7 +80,7 @@ public class Pause {
 		enemy3Img = getImage("/images/gameImgEnemy3.PNG");
 		enemy4Img = getImage("/images/gameImgEnemy4.PNG");
 		enemy5Img = getImage("/images/gameImgEnemy5.PNG");
-		speedBoostIcon = getImage("/images/SpeedBoostAbility.PNG");
+		speedBoostIcon = getImage("/images/SpeedBoostAbility.png");//changed from .PNG > .png "/images/SpeedBoostAbility.png"
 		healthRegenIcon = getImage("/images/Health Regen Ability.png");
 		healthIncreaseIcon = getImage("/images/Health Increase Ability.png");
 		shrinkIcon = getImage("/images/Shrink Ability.png");
@@ -329,8 +329,6 @@ public class Pause {
 			 font = new Font("impact", 1, 50);
 			font2 = new Font("impact", 1, 30);
 
-
-
 			g.setColor(Color.BLACK);
 			g.fillRect(0,0,1920,1280);
 			g.setFont(font);
@@ -420,7 +418,9 @@ public class Pause {
 			//Description
 			g.drawString(this.getDescription(),1000,650);
 
-        } else if (this.game.gameState == STATE.PauseH1) {
+        }
+			/*
+			else if (this.game.gameState == STATE.PauseH1) {
             font = new Font("impact", 1, 50);
             font2 = new Font("impact", 1, 30);
 			g.setColor(Color.BLACK);
@@ -446,7 +446,8 @@ public class Pause {
 			
 			g.drawRect(850, 870, 200, 64);
 			g.drawString("Main", 920, 910);
-		} else if (game.gameState == STATE.PauseH2){
+		}*/
+			else if (game.gameState == STATE.PauseH2){
 			font = new Font("impact", 1, 50);
 			font2 = new Font("impact", 1, 30);
 			
