@@ -80,7 +80,7 @@ public class Pause {
 		enemy3Img = getImage("/images/gameImgEnemy3.PNG");
 		enemy4Img = getImage("/images/gameImgEnemy4.PNG");
 		enemy5Img = getImage("/images/gameImgEnemy5.PNG");
-		speedBoostIcon = getImage("/images/SpeedBoostAbility.PNG");
+		speedBoostIcon = getImage("/images/SpeedBoostAbility.png");//changed from .PNG > .png "/images/SpeedBoostAbility.png"
 		healthRegenIcon = getImage("/images/Health Regen Ability.png");
 		healthIncreaseIcon = getImage("/images/Health Increase Ability.png");
 		shrinkIcon = getImage("/images/Shrink Ability.png");
@@ -329,8 +329,6 @@ public class Pause {
 			 font = new Font("impact", 1, 50);
 			font2 = new Font("impact", 1, 30);
 
-
-
 			g.setColor(Color.BLACK);
 			g.fillRect(0,0,1920,1280);
 			g.setFont(font);
@@ -420,33 +418,9 @@ public class Pause {
 			//Description
 			g.drawString(this.getDescription(),1000,650);
 
-        } else if (this.game.gameState == STATE.PauseH1) {
-            font = new Font("impact", 1, 50);
-            font2 = new Font("impact", 1, 30);
-			g.setColor(Color.BLACK);
-			g.fillRect(0,0,1920,1280);
-			g.setFont(font);
-			g.setColor(Color.white);
-			g.drawString("Help", 900, 70);
+        }
 
-			g.setFont(font2);
-			g.drawString("Waves: Simply use Arrow keys or WASD to move and avoid enemies.", 40, 300);
-			g.drawString("One you avoid them long enough, a new batch will spawn in! Defeat each boss to win!", 40, 340);
-			
-			g.drawString("Press P to pause and un-pause", 40, 400);
-			g.drawString("Press Enter to use abilities when they have been equipped", 40, 440);
-			
-			g.drawString("Click Next to see Enemy and Boss Summaries", 40, 800);
-
-			g.setFont(font2);
-			g.setColor(Color.white);
-			
-			g.drawRect(1600, 870, 200, 65);
-			g.drawString("Next", 1650, 910);
-			
-			g.drawRect(850, 870, 200, 64);
-			g.drawString("Main", 920, 910);
-		} else if (game.gameState == STATE.PauseH2){
+			else if (game.gameState == STATE.PauseH2){
 			font = new Font("impact", 1, 50);
 			font2 = new Font("impact", 1, 30);
 			
