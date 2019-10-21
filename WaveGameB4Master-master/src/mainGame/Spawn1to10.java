@@ -170,15 +170,15 @@ public class Spawn1to10 {
 					levels.remove(index);// remove the current level from being selected
 					levelsRemaining--;
 					if (levelsRemaining > 5) { //If there's still more than 5 levels remaining
-						System.out.println("Level Number was: " + levelNumber + " And is staying low!");
-						index = r.nextInt(levelsRemaining - 5);// pick another level at random from the first half
-						levelNumber++; //= levels.get(index);// set levelNumber to whatever index was randomly selected
+						System.out.println("Level Number was: " + levelNumber + " And is staying low!");//DO NOT NEED THIS LINE 
+						index = r.nextInt(levelsRemaining - 5);// DO NOT NEED THIS LINE 
+						levelNumber++; //= levels.get(index);// Increases level by one 
 						System.out.println("And is changing to: " + levelNumber + "   " + index);
 					}
 					else { //If there's just 5 levels remaining
-						System.out.println("Level Number was: " + levelNumber + " And is going up!");
-						index = r.nextInt(levelsRemaining);// pick another level at random from the second half
-						levelNumber++; //= levels.get(index);// set levelNumber to whatever index was randomly selected
+						System.out.println("Level Number was: " + levelNumber + " And is going up!");// DO NOT NEED THIS LINE 
+						index = r.nextInt(levelsRemaining);// DO NOT NEED THIS LINE
+						levelNumber++; //= levels.get(index); changed this so now levels increase by one 
 						System.out.println("And is changing to: " + levelNumber);
 					}
 				}
