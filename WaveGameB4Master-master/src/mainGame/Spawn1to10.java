@@ -122,6 +122,22 @@ public class Spawn1to10 {
 			}
 
 		}
+		/**
+		 * lvls 
+		 * 		Actual								Theortical 
+		 * 1: Green 								green
+		 * 2: Red									red
+		 * 3: BURST									burst
+		 * 4: Cyan 									Cyan
+		 * 5: yellow square 						yellow
+		 * 6: green and red							green + red
+		 * 
+		 * 7:green and cyan 						green + burst 
+		 * 8: fast green and fast yellow burst 		green + cyan 
+		 * 9: big yellow square and red 			red + red
+		 * 10: two yellow bursts fast				red boss
+		 * 11: boss
+		 */
 		
 		/*
 		 * EVERY LEVEL WORKS THE SAME WAY
@@ -135,7 +151,7 @@ public class Spawn1to10 {
 			handler.addPickup(new PickupCoin(getRandomInteger(2000, 1),
 			getRandomInteger(1000, 1), ID.PickupCoin, "images/PickupCoin.PNG", handler, game ));
 		}
-		else if (levelNumber == 3) {// this is level 1
+		else if (levelNumber == 2) {// red enemy
 			
 			if (spawning) {
 				spawnTimer--;// keep decrementing the spawning spawnTimer 60 times a second
@@ -183,7 +199,7 @@ public class Spawn1to10 {
 					}
 				}
 			}
-		} else if (levelNumber == 2) {
+		} else if (levelNumber == 4) {
       
 			if (spawning) {
 				spawnTimer--;// keep decrementing the spawning spawnTimer 60 times a second
@@ -285,7 +301,7 @@ public class Spawn1to10 {
 					}
 				}
 			}
-		} else if (levelNumber == 4) {
+		} else if (levelNumber == 5) {
 			levelTimer--;
 			if (tempCounter < 1) {
 				handler.clearCoins();
@@ -325,7 +341,7 @@ public class Spawn1to10 {
 					}
 				}
 			}
-		} else if (levelNumber == 5) {
+		} else if (levelNumber == 3) {
 			if (spawning) {
 				spawnTimer--;// keep decrementing the spawning spawnTimer 60 times a second
 			}
@@ -394,11 +410,20 @@ public class Spawn1to10 {
 			if (levelTimer == 900){
 				handler.clearLevelText();
 			}
-			if (spawnTimer == 0) {
+			if (spawnTimer % 50 ==0) {
 				handler.addObject(
 						new EnemyBasic(randx, randy, 7, 7, ID.EnemyBasic, handler));
-				spawnTimer = 50;
+				if(spawnTimer==0){
+				spawnTimer = 100;
+				}
 			}
+			else{
+				if(spawnTimer==75){
+					handler.addObject(
+							new EnemySmart(randx, randy, -5, ID.EnemySmart, handler));
+				}
+			}
+			/**
 			if (spawnTimer == 35) {
 				handler.addObject(
 						new EnemySweep(randx, randy, 25, 2, ID.EnemySweep, handler));
@@ -413,6 +438,8 @@ public class Spawn1to10 {
 						new EnemySweep(randx, randy, 25, -4, ID.EnemySweep, handler));
 				spawnTimer = 50;
 			}
+			**/
+			
 			if (levelTimer == 0) {
 				handler.clearEnemies();
 				hud.setLevel(hud.getLevel() + 1);
