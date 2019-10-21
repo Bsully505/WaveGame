@@ -118,7 +118,7 @@ public class Spawn1to10 {
 				tempCounter = 0;
 				levelCounter = 1;
 				index = r.nextInt(levelsRemaining - 5);
-				levelNumber = levels.get(index);
+				levelNumber = 1;
 			}
 
 		}
@@ -135,7 +135,7 @@ public class Spawn1to10 {
 			handler.addPickup(new PickupCoin(getRandomInteger(2000, 1),
 			getRandomInteger(1000, 1), ID.PickupCoin, "images/PickupCoin.PNG", handler, game ));
 		}
-		else if (levelNumber == 1) {// this is level 1
+		else if (levelNumber == 3) {// this is level 1
 			
 			if (spawning) {
 				spawnTimer--;// keep decrementing the spawning spawnTimer 60 times a second
@@ -172,13 +172,13 @@ public class Spawn1to10 {
 					if (levelsRemaining > 5) { //If there's still more than 5 levels remaining
 						System.out.println("Level Number was: " + levelNumber + " And is staying low!");
 						index = r.nextInt(levelsRemaining - 5);// pick another level at random from the first half
-						levelNumber = levels.get(index);// set levelNumber to whatever index was randomly selected
+						levelNumber++; //= levels.get(index);// set levelNumber to whatever index was randomly selected
 						System.out.println("And is changing to: " + levelNumber + "   " + index);
 					}
 					else { //If there's just 5 levels remaining
 						System.out.println("Level Number was: " + levelNumber + " And is going up!");
 						index = r.nextInt(levelsRemaining);// pick another level at random from the second half
-						levelNumber = levels.get(index);// set levelNumber to whatever index was randomly selected
+						levelNumber++; //= levels.get(index);// set levelNumber to whatever index was randomly selected
 						System.out.println("And is changing to: " + levelNumber);
 					}
 				}
@@ -228,18 +228,18 @@ public class Spawn1to10 {
 					if (levelsRemaining > 5) {
 						System.out.println("Level Number was: " + levelNumber + " And is staying low!");
 						index = r.nextInt(levelsRemaining - 5);
-						levelNumber = levels.get(index);
+						levelNumber++;// = levels.get(index);
 						System.out.println("And is changing to: " + levelNumber + "   " + index);
 					}
 					else {
 						System.out.println("Level Number was: " + levelNumber + " And is going up!");
 						index = r.nextInt(levelsRemaining);
-						levelNumber = levels.get(index);
+						levelNumber++;// = levels.get(index);
 						System.out.println("And is changing to: " + levelNumber);
 					}
 				}
 			}
-		} else if (levelNumber == 3) {
+		} else if (levelNumber == 1) {
 			if (spawning) {
 				spawnTimer--;// keep decrementing the spawning spawnTimer 60 times a second
 			}
@@ -274,13 +274,13 @@ public class Spawn1to10 {
 					if (levelsRemaining > 5) {
 						System.out.println("Level Number was: " + levelNumber + " And is staying low!");
 						index = r.nextInt(levelsRemaining - 5);
-						levelNumber = levels.get(index);
+						levelNumber++;// = levels.get(index);
 						System.out.println("And is changing to: " + levelNumber + "   " + index);
 					}
 					else {
 						System.out.println("Level Number was: " + levelNumber + " And is going up!");
 						index = r.nextInt(levelsRemaining);
-						levelNumber = levels.get(index);
+						levelNumber++;// = levels.get(index);
 						System.out.println("And is changing to: " + levelNumber);
 					}
 				}
@@ -314,13 +314,13 @@ public class Spawn1to10 {
 					if (levelsRemaining > 5) {
 						System.out.println("Level Number was: " + levelNumber + " And is staying low!");
 						index = r.nextInt(levelsRemaining - 5);
-						levelNumber = levels.get(index);
+						levelNumber++;// = levels.get(index);
 						System.out.println("And is changing to: " + levelNumber + "   " + index);
 					}
 					else {
 						System.out.println("Level Number was: " + levelNumber + " And is going up!");
 						index = r.nextInt(levelsRemaining);
-						levelNumber = levels.get(index);
+						levelNumber++;// = levels.get(index);
 						System.out.println("And is changing to: " + levelNumber);
 					}
 				}
@@ -359,13 +359,13 @@ public class Spawn1to10 {
 					if (levelsRemaining > 5) {
 						System.out.println("Level Number was: " + levelNumber + " And is staying low!");
 						index = r.nextInt(levelsRemaining - 5);
-						levelNumber = levels.get(index);
+						levelNumber++;// = levels.get(index);
 						System.out.println("And is changing to: " + levelNumber + "   " + index);
 					}
 					else {
 						System.out.println("Level Number was: " + levelNumber + " And is going up!");
 						index = r.nextInt(levelsRemaining);
-						levelNumber = levels.get(index);
+						levelNumber++;// = levels.get(index);
 						System.out.println("And is changing to: " + levelNumber);
 					}
 				}
@@ -425,7 +425,7 @@ public class Spawn1to10 {
 					levels.remove(index);
 					levelsRemaining--;
 					index = r.nextInt(levelsRemaining);
-					levelNumber = levels.get(index);
+					levelNumber++;// = levels.get(index);;
 				}
 			}
 		} else if (levelNumber == 7) {
@@ -482,7 +482,7 @@ public class Spawn1to10 {
 					levels.remove(index);
 					levelsRemaining--;
 					index = r.nextInt(levelsRemaining);
-					levelNumber = levels.get(index);
+					levelNumber++;// = levels.get(index);
 				}
 			}
 		} else if (levelNumber == 8) {
@@ -526,7 +526,7 @@ public class Spawn1to10 {
 					levels.remove(index);
 					levelsRemaining--;
 					index = r.nextInt(levelsRemaining);
-					levelNumber = levels.get(index);
+					levelNumber++;// = levels.get(index);
 				}
 			}
 		} else if (levelNumber == 9) {
@@ -580,7 +580,7 @@ public class Spawn1to10 {
 					levels.remove(index);
 					levelsRemaining--;
 					index = r.nextInt(levelsRemaining);
-					levelNumber = levels.get(index);
+					levelNumber++;// = levels.get(index);
 				}
 			}
 		} else if (levelNumber == 10) {
@@ -630,7 +630,7 @@ public class Spawn1to10 {
 					levels.remove(index);
 					levelsRemaining--;
 					index = r.nextInt(levelsRemaining);
-					levelNumber = levels.get(index);
+					levelNumber++;// = levels.get(index);
 				}
 			}
 		}
@@ -677,18 +677,19 @@ public class Spawn1to10 {
 			tempCounter = 0;
 			levelNumber = 101;
 		} else if (levelsRemaining > 1) {
-			levels.remove(index);
+			levelNumber++;
+			//levels.remove(index);
 			levelsRemaining--;
 			System.out.println(levelsRemaining);
 			levelCounter++;
 			tempCounter = 0;
 			if (levelsRemaining > 5) {
 				index = r.nextInt(levelsRemaining - 5);
-				levelNumber = levels.get(index);
+				//levelNumber = levels.get(index);
 			}
 			else {
 				index = r.nextInt(levelsRemaining);
-				levelNumber = levels.get(index);
+				//levelNumber++;// = levels.get(index);;
 			}
 		}
 	}
