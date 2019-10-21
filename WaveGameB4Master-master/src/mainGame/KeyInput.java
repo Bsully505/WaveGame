@@ -52,13 +52,53 @@ public class KeyInput extends KeyAdapter {
 		//100 points are added when "." is pressed
 		if(key == 46){
 			if(e.isShiftDown()){
-				hud.setScore(10000);//points added when "." is pressed
+				hud.setScore(9900);//points added when "." is pressed
 			}
 			hud.setScore(100);
 		}
+		/**
+		 * Spawns enemies related to number 
+		 */
+		if(game.gameState==STATE.Game){
+		if(key == 49){//red enemy
+			handler.addObject(
+					new EnemyBasic(0, 0, 9, 9, ID.EnemyBasic, handler));
+		}
+		if(key == 50){//neon blue enemy
+			handler.addObject(
+					new EnemyFast(0, 0,ID.EnemyFast, handler));
+		}
+		if(key == 51){//green enemy
+			handler.addObject(
+					new EnemySmart(0, 0,-3, ID.EnemySmart, handler));
+		}
+		if(key == 52){//red boss
+			handler.addObject(
+					new EnemyBoss(ID.EnemyBoss, handler));
+		}
+		if(key == 53){//neon blue
+			handler.addObject(
+					new EnemySweep(5, 5, 5, 5, ID.EnemySweep, handler));
+		}
+		if(key == 54){//yellow burst 
+			handler.addObject(
+					new EnemyBurst(5, 5, 5, 5, 8, "NORTH", ID.EnemyBurst, handler));
+		}
+		
+		
+		/**
+		 * key bind for deleting all enemies on the screen
+		 * not completed yet
+		 */
+		if(key == 79){//key is "o"
+		
+		}
+		}
+		
+		
 		
 		//pause functionality
-		if(key == 80){
+		if(key == 80|| key == 27){
 			if(game.gameState == STATE.Game){
 				pause.setGameSaved(false);
 				game.gameState = STATE.Pause;
