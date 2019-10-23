@@ -173,7 +173,7 @@ public class Menu {
 			g.drawRect(80, 135, 850, 250);
 			g.setFont(font);
 			g.setColor(Color.white);
-			g.drawString("Help", 400, 280);
+			g.drawString("Instructions", 200, 280);
 
 			g.setColor(Color.white);
 			g.drawRect(80, 435, 850, 250);
@@ -196,12 +196,12 @@ public class Menu {
 
 			g.setFont(font2);
 			g.drawString("Waves: Simply use Arrow keys or WASD to move and avoid enemies.", 40, 200);
-			g.drawString("One you avoid them long enough, a new batch will spawn in! Defeat each boss to win!", 40, 240);
+			g.drawString("Once you avoid them long enough, a new batch will spawn in! Defeat each boss to win!", 40, 240);
 			
 			g.drawString("Press P to pause and un-pause", 40, 300);
 			g.drawString("Press Enter to use abilities when they have been equipped", 40, 340);
 			
-			g.drawString("Click Next to see Enemy and Boss Summeries", 40, 800);
+			g.drawString("Click Next to see Enemy and Boss Summaries", 40, 800);
 
 			g.setFont(font2);
 			g.setColor(Color.white);
