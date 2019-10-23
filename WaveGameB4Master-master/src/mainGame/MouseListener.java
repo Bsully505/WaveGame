@@ -235,8 +235,10 @@ public class MouseListener extends MouseAdapter {
 					game.gameState = STATE.Menu;
 				}
 
-				if(mouseOver(mx, my, 550, 400, 900, 200)){
+				//sends you to help menu while in Pause menu
+				if(mouseOver(mx, my, 550, 350, 900, 200)){
 					game.gameState = STATE.PauseH1;
+					//pause.setDescription("Help Menu");
 				}
 				
 				if (this.mouseOver(mx, my, 550, 850, 900, 200)) {
@@ -244,7 +246,7 @@ public class MouseListener extends MouseAdapter {
 				pause.setDescription("Click on an ability in the Loadout to see its description.");
 				}
 
-				if(mouseOver(mx, my, 550, 700, 900, 200)){
+				if(mouseOver(mx, my, 550, 650, 900, 200)){ // 700
 					pause.setGameSaved(true);
 					pause.saveGame();
 					pause.reset();
