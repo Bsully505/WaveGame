@@ -46,7 +46,7 @@ public class KeyInput extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
-		this.speed = player.getPlayerSpeed();
+		this.speed =  player.getPlayerSpeed();
 		this.diagonalSpeed = player.getDiagonalPlayerSpeed();//previously speed would not increase on diagonal
 		
 		//100 points are added when "." is pressed
@@ -56,34 +56,48 @@ public class KeyInput extends KeyAdapter {
 			}
 			hud.setScore(100);
 		}
+		else{
+			System.out.println(key);
+		}
 		/**
 		 * Spawns enemies related to number 
 		 */
 		if(game.gameState==STATE.Game){
-		if(key == 49){//red enemy
+		if(key == 49){//green enemy 
+			handler.addObject(
+			new EnemySmart(0, 0,-3, ID.EnemySmart, handler));
+		}
+		if(key == 50){//red enemy works
 			handler.addObject(
 					new EnemyBasic(0, 0, 9, 9, ID.EnemyBasic, handler));
-		}
-		if(key == 50){//neon blue enemy
+		}	
+		if(key == 51){//neon blue enemy
 			handler.addObject(
 					new EnemyFast(0, 0,ID.EnemyFast, handler));
 		}
-		if(key == 51){//green enemy
-			handler.addObject(
-					new EnemySmart(0, 0,-3, ID.EnemySmart, handler));
+		if(key == 52){//yellow follow shooter ******
+			handler.addObject(new EnemyShooter(100, 100, 100, 100,
+					-20, ID.EnemyShooter, this.handler));
 		}
-		if(key == 52){//red boss
+		if(key == 53){//yellow burst works
+			handler.addObject(
+					new EnemyBurst(-200, 200, 50, 50, 200, "left", ID.EnemyBurst, handler));
+		}
+		
+		if(key == 54){//red boss works
 			handler.addObject(
 					new EnemyBoss(ID.EnemyBoss, handler));
 		}
-		if(key == 53){//neon blue
+		if(key == 55){//Boss eye works
 			handler.addObject(
-					new EnemySweep(5, 5, 5, 5, ID.EnemySweep, handler));
+					new BossEye(game,250, 250, ID.BossEye, handler,3));
 		}
-		if(key == 54){//yellow burst 
+		if(key == 56){//neon blue works
 			handler.addObject(
-					new EnemyBurst(5, 5, 5, 5, 8, "NORTH", ID.EnemyBurst, handler));
+					new EnemySweep(50, 5, 20, 2, ID.EnemySweep, handler));
 		}
+	
+		
 		
 		
 		/**
