@@ -725,7 +725,7 @@ public class Spawn1to10 {
 			tempCounter = 0;
 			if (levelsRemaining > 5) {
 				index = r.nextInt(levelsRemaining - 5);
-				//levelNumber = levels.get(index);
+				//levelNumber = levels.get(index); 
 			}
 //			else {
 //				index = r.nextInt(levelsRemaining);
