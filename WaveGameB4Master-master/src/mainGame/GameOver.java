@@ -44,7 +44,6 @@ public class GameOver {
 	private FileWriter fWriter = new FileWriter(scoresFile, true);
 	private BufferedWriter bWriter = new BufferedWriter(fWriter);
 	private PrintWriter pWriter = new PrintWriter(bWriter);
-	private BufferedReader bReader = new BufferedReader(new FileReader(scoresFile));
 	private ArrayList<String> fileList = new ArrayList<String>();
 
 	public GameOver(Game game, Handler handler, HUD hud) throws IOException {
