@@ -56,9 +56,6 @@ public class KeyInput extends KeyAdapter {
 			}
 			hud.setScore(100);
 		}
-		else{
-			System.out.println(key);
-		}
 		/**
 		 * Spawns enemies related to number 
 		 */
