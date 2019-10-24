@@ -3,7 +3,6 @@ package mainGame;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.DisplayMode;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -11,7 +10,6 @@ import java.awt.image.BufferStrategy;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.Thread.State;
 import java.util.Scanner;
 import java.net.MalformedURLException;
 
@@ -43,7 +41,7 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Handler handler;
 	private HUD hud;
-	private SpawnEasy spawnerE;
+	private SpawnHard spawnerH;
 	private Spawn1to10 spawner;
 	private Spawn10to20 spawner2;
 	private Menu menu;
@@ -82,7 +80,7 @@ public class Game extends Canvas implements Runnable {
 	 * Used to switch between each of the screens shown to the user
 	 */
 	public enum STATE {
-		Menu, Help, Help2, Help3, Game, GameOver, GameWon, Upgrade, Boss, Pause, PauseH1, PauseH2, PauseH3, PauseShop, Leaderboard, GameWonEasy, GameEasy
+		Menu, Help, Help2, Help3, Game, GameOver, GameWon, Upgrade, Boss, Pause, PauseH1, PauseH2, PauseH3, PauseShop, Leaderboard, GameWonHard, GameHard
 	};
 
 	/**
@@ -98,19 +96,19 @@ public class Game extends Canvas implements Runnable {
 
 		handler = new Handler();
 		hud = new HUD();
-		spawnerE = new SpawnEasy(this.handler, this.hud, this.spawner, this);
+		spawnerH = new SpawnHard(this.handler, this.hud, this.spawner, this);
 		spawner = new Spawn1to10(this.handler, this.hud, this);
 		spawner2 = new Spawn10to20(this.handler, this.hud, this.spawner, this);
 		menu = new Menu(this, this.handler, this.hud, this.spawner);
 		upgradeScreen = new UpgradeScreen(this, this.handler, this.hud);
 		player = new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.Player, handler, this.hud, this);
-		upgrades = new Upgrades(this, this.handler, this.hud, this.upgradeScreen, this.player, this.spawnerE, this.spawner,
+		upgrades = new Upgrades(this, this.handler, this.hud, this.upgradeScreen, this.player, this.spawnerH, this.spawner,
 				this.spawner2);
 		gameOver = new GameOver(this, this.handler, this.hud);
 		gameWon = new GameWon(this, this.handler, this.hud);
 		pause = new Pause(this.hud, this, this.handler, false, this.spawner, this.spawner2, upgrades);
-		leaderboard = new Leaderboard(this,this.handler,this.hud);
-		mouseListener = new MouseListener(this, this.handler, this.hud, this.spawnerE, this.spawner, this.spawner2, this.upgradeScreen,
+		leaderboard = new Leaderboard(this,this.handler,this.hud, this.gameOver);
+		mouseListener = new MouseListener(this, this.handler, this.hud, this.spawnerH, this.spawner, this.spawner2, this.upgradeScreen,
 				this.player, this.upgrades, pause);
 		this.addKeyListener(new KeyInput(this.pause, this.handler, this, this.hud, this.player, this.spawner, this.upgrades));
 		this.addMouseListener(mouseListener);
@@ -380,10 +378,10 @@ public class Game extends Canvas implements Runnable {
 			} else if (Spawn1to10.LEVEL_SET == 2) {// user is on levels 10 thru 20, update them
 				spawner2.tick();
 			}
-		} else if (gameState == STATE.GameEasy || gameState == STATE.Boss) {// user is on menu, update the menu items
+		} else if (gameState == STATE.GameHard || gameState == STATE.Boss) {// user is on menu, update the menu items
 			hud.tick();
-			if (SpawnEasy.LEVEL_SET == 1) {
-				spawnerE.tick();
+			if (SpawnHard.LEVEL_SET == 1) {
+				spawnerH.tick();
 			} else {
 				spawner.tick();
 			}
@@ -396,7 +394,7 @@ public class Game extends Canvas implements Runnable {
 		} else if (gameState == STATE.GameWon){
 			gameWon.highscore = true;
 			gameWon.tick();
-		} else if (gameState == STATE.GameWonEasy){
+		} else if (gameState == STATE.GameWonHard){
 			gameWon.highscore = false;
 			gameWon.tick();
 		}
@@ -489,7 +487,7 @@ public class Game extends Canvas implements Runnable {
 			hud.render(g);
 			pause.render(g);
 		} else {
-			if (gameState == STATE.Game || gameState == STATE.Boss || gameState == STATE.GameEasy) {// user is
+			if (gameState == STATE.Game || gameState == STATE.Boss || gameState == STATE.GameHard) {// user is
 																		// playing
 																		// game,
 																		// draw
@@ -508,7 +506,7 @@ public class Game extends Canvas implements Runnable {
 			} else if (gameState == STATE.GameOver) {// game is over, draw the
 														// game over screen
 				gameOver.render(g);
-			} else if (gameState == STATE.GameWon || gameState == STATE.GameWonEasy) {
+			} else if (gameState == STATE.GameWon || gameState == STATE.GameWonHard) {
 				gameWon.render(g);
 			} else if (gameState == STATE.Leaderboard){
 				leaderboard.render(g);

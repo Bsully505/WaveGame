@@ -19,7 +19,7 @@ public class MouseListener extends MouseAdapter {
 	private Game game;
 	private Handler handler;
 	private HUD hud;
-	private SpawnEasy spawnerE;
+	private SpawnHard spawnerH;
 	private Spawn1to10 spawner;
 	private Spawn10to20 spawner2;
 	private UpgradeScreen upgradeScreen;
@@ -27,14 +27,14 @@ public class MouseListener extends MouseAdapter {
 	private Player player;
 	private String upgradeText;
 	private Pause pause;
-	public static boolean isEasy;
+	public static boolean isHard;
 
-	public MouseListener(Game game, Handler handler, HUD hud, SpawnEasy spawnerE, Spawn1to10 spawner, Spawn10to20 spawner2,
-			UpgradeScreen upgradeScreen, Player player, Upgrades upgrades, Pause pause) {
+	public MouseListener(Game game, Handler handler, HUD hud, SpawnHard spawnerH, Spawn1to10 spawner, Spawn10to20 spawner2,
+                         UpgradeScreen upgradeScreen, Player player, Upgrades upgrades, Pause pause) {
 		this.game = game;
 		this.handler = handler;
 		this.hud = hud;
-		this.spawnerE = spawnerE;
+		this.spawnerH = spawnerH;
 		this.spawner = spawner;
 		this.spawner2 = spawner2;
 		this.upgradeScreen = upgradeScreen;
@@ -56,20 +56,20 @@ public class MouseListener extends MouseAdapter {
 			hud.reset();
 			hud.setScore(0);
 			hud.setLevel(1);
-			spawnerE.restart();
-			spawnerE.addLevels();
+			spawnerH.restart();
+			spawnerH.addLevels();
 			spawner.restart();
 			spawner.addLevels();
 			spawner2.restart();
 			spawner2.addLevels();
 			Spawn1to10.LEVEL_SET = 1;
-			SpawnEasy.LEVEL_SET = 1;
+			SpawnHard.LEVEL_SET = 1;
 			game.gameState = STATE.Menu;
 			pause.unSaveGame();
 			game.setIsGameSaved(false);
-			MouseListener.setEasy(false);
+			MouseListener.setHard(false);
 			
-		} else if (game.gameState == STATE.GameWon || game.gameState == STATE.GameWonEasy){ //is the game is won, or its the easy mode
+		} else if (game.gameState == STATE.GameWon || game.gameState == STATE.GameWonHard){ //is the game is won, or its the easy mode
 			System.out.println("ass and titties");
 			handler.object.clear();
 			upgrades.resetUpgrades();
@@ -77,46 +77,46 @@ public class MouseListener extends MouseAdapter {
 			hud.reset();
 			hud.setScore(0);
 			hud.setLevel(1);
-			spawnerE.restart();
-			spawnerE.addLevels();
+			spawnerH.restart();
+			spawnerH.addLevels();
 			spawner.restart();
 			spawner.addLevels();
 			spawner2.restart();
 			spawner2.addLevels();
 			Spawn1to10.LEVEL_SET = 1;
-			SpawnEasy.LEVEL_SET = 1;
+			SpawnHard.LEVEL_SET = 1;
 			game.gameState = STATE.Menu;
 			pause.unSaveGame();
 			game.setIsGameSaved(false);
-			MouseListener.setEasy(false);
+			MouseListener.setHard(false);
 		}
 		else if (game.gameState == STATE.Game) {
 		}
-		else if (game.gameState == STATE.GameEasy) {
+		else if (game.gameState == STATE.GameHard) {
 		}
 		else if (game.gameState == STATE.Upgrade) {
 			if (mouseOver(mx, my, 100, 300, 1721, 174)) {
 				upgradeText = upgradeScreen.getPath(1);
 				upgrades.activateUpgrade(upgradeText);
 				upgradeScreen.removeUpgradeOption(1);
-				if (isEasy)
-					game.gameState = STATE.GameEasy;
+				if (isHard)
+					game.gameState = STATE.GameHard;
 				else
 					game.gameState = STATE.Game;
 			} else if (mouseOver(mx, my, 100, 300 + (60 + Game.HEIGHT / 6), 1721, 174)) {
 				upgradeText = upgradeScreen.getPath(2);
 				upgrades.activateUpgrade(upgradeText);
 				upgradeScreen.removeUpgradeOption(2);
-				if (isEasy)
-					game.gameState = STATE.GameEasy;
+				if (isHard)
+					game.gameState = STATE.GameHard;
 				else
 					game.gameState = STATE.Game;
 			} else if (mouseOver(mx, my, 100, 300 + 2 * (60 + Game.HEIGHT / 6), 1721, 174)) {
 				upgradeText = upgradeScreen.getPath(3);
 				upgrades.activateUpgrade(upgradeText);
 				upgradeScreen.removeUpgradeOption(3);
-				if (isEasy)
-					game.gameState = STATE.GameEasy;
+				if (isHard)
+					game.gameState = STATE.GameHard;
 				else
 					game.gameState = STATE.Game;
 			}
@@ -138,7 +138,7 @@ public class MouseListener extends MouseAdapter {
 			}
 			else if (mouseOver(mx, my, 1450, 300, 350, 400)) {
 				handler.object.clear();
-				game.gameState = STATE.GameEasy;
+				game.gameState = STATE.GameHard;
 
 				handler.addObject(player);
 			}
@@ -489,7 +489,7 @@ public class MouseListener extends MouseAdapter {
 			return false;
 	}
 	
-	public static void setEasy(boolean x) {
-		isEasy = x;
+	public static void setHard(boolean x) {
+		isHard = x;
 	}
 }

@@ -15,7 +15,7 @@ import mainGame.Game.STATE;
  * @author Brandon Loehle 5/30/16
  */
 
-public class SpawnEasy {
+public class SpawnHard {
 
 	public static int LEVEL_SET = 1;
 	private Handler handler;
@@ -36,7 +36,7 @@ public class SpawnEasy {
 	private int levelCounter = 1;
 	private LevelText welcomePit;
 
-	public SpawnEasy(Handler handler, HUD hud, Spawn1to10 spawner, Game game) {
+	public SpawnHard(Handler handler, HUD hud, Spawn1to10 spawner, Game game) {
 		this.handler = handler;
 		this.hud = hud;
 		this.game = game;
@@ -100,7 +100,7 @@ public class SpawnEasy {
 		if (levelNumber <= 0) {
 			levelTimer--;
 			if (tempCounter < 1) {// display intro game message ONE time
-				handler.addObject(new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, "EASY MODE",
+				handler.addObject(new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, "HARD MODE",
 						ID.Levels1to10Text, handler));
 				tempCounter++;
 			}
@@ -484,7 +484,7 @@ public class SpawnEasy {
 		else if (levelNumber == 101) {// arbitrary number for the boss
 			System.out.println("101");
 			LEVEL_SET++;
-			MouseListener.setEasy(true);
+			MouseListener.setHard(true);
 			Game.fuckItUpBrah();
 			levelCounter = 1;
 			game.gameState = STATE.Upgrade;
