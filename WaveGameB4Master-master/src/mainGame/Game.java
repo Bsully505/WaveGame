@@ -109,7 +109,7 @@ public class Game extends Canvas implements Runnable {
 		gameOver = new GameOver(this, this.handler, this.hud);
 		gameWon = new GameWon(this, this.handler, this.hud);
 		pause = new Pause(this.hud, this, this.handler, false, this.spawner, this.spawner2, upgrades);
-		leaderboard = new Leaderboard(this,this.handler,this.hud);
+		leaderboard = new Leaderboard(this,this.handler,this.hud, this.gameOver);
 		mouseListener = new MouseListener(this, this.handler, this.hud, this.spawnerE, this.spawner, this.spawner2, this.upgradeScreen,
 				this.player, this.upgrades, pause);
 		this.addKeyListener(new KeyInput(this.pause, this.handler, this, this.hud, this.player, this.spawner, this.upgrades));

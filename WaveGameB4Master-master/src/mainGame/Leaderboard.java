@@ -21,12 +21,14 @@ public class Leaderboard {
 	private int timer;
 	private Color retryColor;
 	private String text;
+	private GameOver gameOver;
 
-	public Leaderboard(Game game, Handler handler, HUD hud) throws MalformedURLException {
+	public Leaderboard(Game game, Handler handler, HUD hud, GameOver gameOver) throws MalformedURLException {
 		this.game = game;
 		this.handler = handler;
 		this.hud = hud;
 		this.retryColor = Color.white;
+		this.gameOver = gameOver;
 	}
 
 	public void tick(){
@@ -41,7 +43,7 @@ public class Leaderboard {
 		g.drawString(text, Game.WIDTH / 2 - getTextWidth(font, text) / 2, Game.HEIGHT / 2 - 150);
 		g.setFont(font2);
 		
-		ArrayList<String> leaderboard = hud.getLeaderboard();
+		ArrayList<String> leaderboard = gameOver.getFileList();
 		
 		for (int i = 0; i < leaderboard.size(); i++){
 			text = leaderboard.get(i);

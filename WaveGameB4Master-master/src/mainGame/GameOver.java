@@ -99,6 +99,11 @@ public class GameOver {
 		return Integer.parseInt((list.get(0)).split(" ")[0]);
 	}
 
+	public ArrayList<String> getFileList(){
+		fileToArrayList();
+		return fileList;
+	}
+
 	public void sendScore() {
 		endScore = hud.getScore();//used to show score at end
 
