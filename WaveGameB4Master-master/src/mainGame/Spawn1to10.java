@@ -701,7 +701,7 @@ public class Spawn1to10 {
 				spawnTimer = 10;
 				tempCounter = 0;
 				if (levelsRemaining == 1) {
-					levelNumber = 10;
+					levelNumber = 11;
 				} else {
 					levels.remove(index);
 					levelsRemaining--;
@@ -715,11 +715,11 @@ public class Spawn1to10 {
 	public void skipLevel() {
 		if (levelsRemaining == 1) {
 			tempCounter = 0;
-			levelNumber = 101;
+			LEVEL_SET++;
 		} else if (levelsRemaining > 1) {
 			levelNumber++;
 			//levels.remove(index);
-			levelsRemaining--;
+			levelsRemaining --;
 			System.out.println(levelsRemaining);
 			levelCounter++;
 			tempCounter = 0;
@@ -727,10 +727,12 @@ public class Spawn1to10 {
 				index = r.nextInt(levelsRemaining - 5);
 				//levelNumber = levels.get(index);
 			}
-			else {
-				index = r.nextInt(levelsRemaining);
-				//levelNumber++;// = levels.get(index);;
-			}
+//			else {
+//				index = r.nextInt(levelsRemaining);
+//				//levelNumber++;// = levels.get(index);;
+//			
+//			}
+			
 		}
 	}
 public static int getRandomInteger(int maximum, int minimum){
