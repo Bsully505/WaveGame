@@ -683,7 +683,7 @@ public class Spawn1to10 {
 						}
 						else if (tempObject.getHealth() <= 0 && LEVEL_SET == 3) {
 							handler.removeObject(tempObject);
-							game.gameState = STATE.GameWonEasy;
+							game.gameState = STATE.GameWonHard;
 						}
 						else if (tempObject.getHealth() == 900){
 							handler.removeObject(welcomePit);

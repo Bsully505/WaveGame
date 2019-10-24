@@ -13,7 +13,7 @@ public class Upgrades {
 	private Handler handler;
 	private HUD hud;
 	private Player player;
-	private SpawnEasy spawnerE;
+	private SpawnHard spawnerH;
 	private Spawn1to10 spawner;
 	private Spawn10to20 spawner2;
 	private UpgradeScreen upgradeScreen;
@@ -22,14 +22,14 @@ public class Upgrades {
 	private static double DAMAGE_RESISTANCE_SCALAR = .05;
 	private static double SPEED_BOOST_SCALAR = 1.5;
 
-	public Upgrades(Game game, Handler handler, HUD hud, UpgradeScreen upgradeScreen, Player player, SpawnEasy spawnerE, Spawn1to10 spawner,
-			Spawn10to20 spawner2) {
+	public Upgrades(Game game, Handler handler, HUD hud, UpgradeScreen upgradeScreen, Player player, SpawnHard spawnerH, Spawn1to10 spawner,
+					Spawn10to20 spawner2) {
 		this.game = game;
 		this.handler = handler;
 		this.hud = hud;
 		this.upgradeScreen = upgradeScreen;
 		this.player = player;
-		this.spawnerE = spawnerE;
+		this.spawnerH = spawnerH;
 		this.spawner = spawner;
 		this.spawner2 = spawner2;
 	}
@@ -84,8 +84,8 @@ public class Upgrades {
 			spawner.skipLevel();
 		} else if (Spawn1to10.LEVEL_SET == 2) {
 			spawner2.skipLevel();
-		} else if (SpawnEasy.LEVEL_SET == 1) {
-			spawnerE.skipLevel();
+		} else if (SpawnHard.LEVEL_SET == 1) {
+			spawnerH.skipLevel();
 		}
 		hud.setAbilityUses(hud.getAbilityUses() - 1);
 		if (hud.getAbilityUses() == 0) {
