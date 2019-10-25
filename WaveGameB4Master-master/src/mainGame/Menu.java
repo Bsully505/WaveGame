@@ -192,7 +192,7 @@ public class Menu {
 
 			g.setFont(font);
 			g.setColor(Color.white);
-			g.drawString("Help", 900, 70);
+			g.drawString("Instructions", 800, 70);
 
 			g.setFont(font2);
 			g.drawString("Waves: Simply use Arrow keys or WASD to move and avoid enemies.", 40, 200);
@@ -202,6 +202,24 @@ public class Menu {
 			g.drawString("Press Enter to use abilities when they have been equipped", 40, 340);
 			
 			g.drawString("Click Next to see Enemy and Boss Summaries", 40, 800);
+
+			//////////////////////////////////////////Instructions info-Graphic////////////////////////////////////////////
+			Font fontT1 = new Font("Amoebic", 1, 35);
+			g.setFont(fontT1);
+			g.setColor(Color.CYAN);// set the new random color
+			g.fillRect(1386, 10, 500, 500);
+			g.setColor(Color.BLACK);
+			g.drawString("Controls", 1560, 50);
+			g.drawImage(this.getImage("/images/arrowkeys.png"), 1480, 100, 300, 300, null);
+			g.drawString("Left", 1400, 300);
+			g.drawString("Right", 1780, 300);
+			g.drawString("Up", 1610, 150);
+			g.drawString("Down", 1580, 360);
+			Font fontT2 = new Font("Amoebic", 1, 25);
+			g.setFont(fontT2);
+			g.drawString("Pause Menu: PRESS P", 1400, 400);
+			g.drawString("Activate Power-up: PRESS ENTER", 1400, 450);
+			//////////////////////////////////////////Instructions info-Graphic////////////////////////////////////////////
 
 			g.setFont(font2);
 			g.setColor(Color.white);
