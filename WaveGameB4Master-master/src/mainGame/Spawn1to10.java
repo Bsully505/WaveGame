@@ -131,12 +131,11 @@ public class Spawn1to10 {
 		 * 4: Cyan 									Cyan
 		 * 5: yellow square 						yellow
 		 * 6: green and red							green + red
+		 * 7:green + burst  						green + burst 
+		 * 8:green + cyan 							green + cyan 
+		 * 9: red + red								red + red
+		 * 10: red boss								red boss
 		 * 
-		 * 7:green and cyan 						green + burst 
-		 * 8: fast green and fast yellow burst 		green + cyan 
-		 * 9: big yellow square and red 			red + red
-		 * 10: two yellow bursts fast				red boss
-		 * 11: boss
 		 */
 		
 		/*
@@ -571,8 +570,8 @@ public class Spawn1to10 {
 						ID.Levels1to10Text,handler);
 					handler.addObject(welcome9);
 					}
-				levelTimer = 1000;
-				tempCounter++;
+				//levelTimer = 1000;
+				//tempCounter++;
 				levelTimer = 2500;
 				tempCounter++;
 			}
@@ -593,7 +592,7 @@ public class Spawn1to10 {
 				spawnTimer = 10;
 				tempCounter = 0;
 				if (levelsRemaining == 1) {
-					levelNumber = 101;
+					levelNumber = 10;
 				} else {
 					levels.remove(index);
 					levelsRemaining--;
@@ -661,6 +660,7 @@ public class Spawn1to10 {
 		else if (levelNumber == 10) {// arbitrary number for the boss
 			game.gameState = STATE.Boss;
 			if (tempCounter < 1) {
+				levelTimer = 1000;
 				handler.clearCoins();
 				LevelText welcomePit = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Welcome to the Pit"),
 						ID.Levels1to10Text,handler);
@@ -720,7 +720,7 @@ public class Spawn1to10 {
 			levelNumber++;
 			//levels.remove(index);
 			levelsRemaining --;
-			System.out.println(levelsRemaining);
+			System.out.println("Levels Remaining: "+levelsRemaining);
 			levelCounter++;
 			tempCounter = 0;
 			if (levelsRemaining > 5) {
