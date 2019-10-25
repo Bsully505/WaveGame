@@ -243,7 +243,7 @@ public class Spawn10to20 {
 					levels.remove(index);
 					randomMax--;
 					index = r.nextInt(randomMax);
-					levelNumber = levels.get(index);
+					levelNumber++;// = levels.get(index);
 				}
 			}
 		} else if (levelNumber == 4) {
@@ -437,7 +437,7 @@ public class Spawn10to20 {
 					levels.remove(index);
 					randomMax--;
 					index = r.nextInt(randomMax);
-					levelNumber = levels.get(index);
+					levelNumber++;// = levels.get(index);
 				}
 			}
 		} else if (levelNumber == 10) {
