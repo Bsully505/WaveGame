@@ -59,6 +59,20 @@ public class Spawn10to20 {
 			levels.add(i);
 		}
 	}
+	
+	/**
+	 * Lvls 	actual 					theoritical 
+	 * 11 		Red						Yellow box and red
+	 * 12		Cyan					Yellow box and yellow box 
+	 * 13								yellow box and burst 
+	 * 14								Cyan and burst 
+	 * 15								burst burst maybe burst 
+	 * 16								Yellow box Cyan 
+	 * 17								Red Red green 
+	 * 18								cyan cyan 
+	 * 19								ALL
+	 * 20								boss
+	 */
 
 	public void tick() {
 		
@@ -105,7 +119,7 @@ public class Spawn10to20 {
 				handler.clearEnemies();
 				levelCounter = 1;
 				tempCounter = 0;
-				levelNumber = levels.get(index);
+				levelNumber++;// = levels.get(index);
 			}
 
 		}
@@ -138,10 +152,10 @@ public class Spawn10to20 {
 				if (randomMax == 1) {
 					levelNumber = 101;
 				} else {
-					levels.remove(index);
+					//levels.remove(index); Bryan oct 25
 					randomMax--;
-					index = r.nextInt(randomMax);
-					levelNumber = levels.get(index);
+					//index = r.nextInt(randomMax);
+					levelNumber++;// = levels.get(index); Bryan oct 25
 				}
 			}
 		} else if (levelNumber == 2) {
@@ -180,10 +194,10 @@ public class Spawn10to20 {
 				if (randomMax == 1) {
 					levelNumber = 101;
 				} else {
-					levels.remove(index);
+					//levels.remove(index);
 					randomMax--;
-					index = r.nextInt(randomMax);
-					levelNumber = levels.get(index);
+					//index = r.nextInt(randomMax);
+					levelNumber++;// = levels.get(index); Bryan oct 25
 				}
 			}
 		} else if (levelNumber == 3) {
@@ -242,10 +256,10 @@ public class Spawn10to20 {
 				if (randomMax == 1) {
 					levelNumber = 101;
 				} else {
-					levels.remove(index);
+					//levels.remove(index);
 					randomMax--;
-					index = r.nextInt(randomMax);
-					levelNumber = levels.get(index);
+					//index = r.nextInt(randomMax);
+					levelNumber++;// = levels.get(index);Bryan oct 25
 				}
 			}
 		} else if (levelNumber == 5) {
@@ -275,10 +289,10 @@ public class Spawn10to20 {
 				if (randomMax == 1) {
 					levelNumber = 101;
 				} else {
-					levels.remove(index);
+					//levels.remove(index);
 					randomMax--;
-					index = r.nextInt(randomMax);
-					levelNumber = levels.get(index);
+					//index = r.nextInt(randomMax);
+					levelNumber++;// = levels.get(index); Bryan oct 25
 				}
 			}
 		} else if (levelNumber == 6) {
@@ -309,10 +323,10 @@ public class Spawn10to20 {
 				if (randomMax == 1) {
 					levelNumber = 101;
 				} else {
-					levels.remove(index);
+					//levels.remove(index);
 					randomMax--;
-					index = r.nextInt(randomMax);
-					levelNumber = levels.get(index);
+					//index = r.nextInt(randomMax);
+					levelNumber++;// = levels.get(index);Bryan oct 25
 				}
 			}
 		} else if (levelNumber == 7) {
@@ -351,10 +365,10 @@ public class Spawn10to20 {
 				if (randomMax == 1) {
 					levelNumber = 101;
 				} else {
-					levels.remove(index);
+					//levels.remove(index);
 					randomMax--;
-					index = r.nextInt(randomMax);
-					levelNumber = levels.get(index);
+					//index = r.nextInt(randomMax);
+					levelNumber++;// = levels.get(index);
 				}
 			}
 		} else if (levelNumber == 8) {
@@ -382,10 +396,10 @@ public class Spawn10to20 {
 				if (randomMax == 1) {
 					levelNumber = 101;
 				} else {
-					levels.remove(index);
+					//levels.remove(index);
 					randomMax--;
-					index = r.nextInt(randomMax);
-					levelNumber = levels.get(index);
+					//index = r.nextInt(randomMax);
+					levelNumber++;// = levels.get(index); Bryan oct 25
 				}
 			}
 		} else if (levelNumber == 9) {
@@ -439,10 +453,10 @@ public class Spawn10to20 {
 				if (randomMax == 1) {
 					levelNumber = 101;
 				} else {
-					levels.remove(index);
+					//levels.remove(index);
 					randomMax--;
-					index = r.nextInt(randomMax);
-					levelNumber = levels.get(index);
+					//index = r.nextInt(randomMax);
+					levelNumber++;// = levels.get(index);
 				}
 			}
 		}
@@ -493,11 +507,11 @@ public class Spawn10to20 {
 			tempCounter = 0;
 			levelNumber = 101;
 		} else if (randomMax > 1) {
-			levels.remove(index);
+			//levels.remove(index);
 			randomMax--;
 			tempCounter = 0;
-			index = r.nextInt(randomMax);
-			levelNumber = levels.get(index);
+			//index = r.nextInt(randomMax);
+			levelNumber++;// = levels.get(index);
 		}
 	}
 	
