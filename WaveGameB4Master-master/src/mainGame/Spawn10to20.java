@@ -62,8 +62,8 @@ public class Spawn10to20 {
 	
 	/**
 	 * Lvls 	actual 					theoritical 
-	 * 11 		Red and Yellow box 		Yellow box and red
-	 * 12		Yellow Box Yellow box	Yellow box and yellow box 
+	 * 11 		Yellow box and red 		Yellow box and red
+	 * 12		Yellow Box Yellow box	Yellow box Yellow box 
 	 * 13		Green 					yellow box and burst 
 	 * 14		Yellow Box				Cyan and burst 
 	 * 15		Burst					burst burst maybe burst 
