@@ -64,14 +64,14 @@ public class Spawn10to20 {
 	 * Lvls 	actual 					theoritical 
 	 * 11 		Red						Yellow box and red
 	 * 12		Cyan					Yellow box and yellow box 
-	 * 13								yellow box and burst 
-	 * 14								Cyan and burst 
-	 * 15								burst burst maybe burst 
-	 * 16								Yellow box Cyan 
-	 * 17								Red Red green 
-	 * 18								cyan cyan 
-	 * 19								ALL
-	 * 20								boss
+	 * 13		Green 					yellow box and burst 
+	 * 14		Yellow Box				Cyan and burst 
+	 * 15		Burst					burst burst maybe burst 
+	 * 16		Red						Yellow box Cyan 
+	 * 17		Cyan					Red Red green 
+	 * 18		Green 					cyan cyan 
+	 * 19		Yellow Box				ALL
+	 * 20		Burst					boss
 	 */
 
 	public void tick() {
