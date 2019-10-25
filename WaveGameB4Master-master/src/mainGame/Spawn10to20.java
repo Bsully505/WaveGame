@@ -62,8 +62,8 @@ public class Spawn10to20 {
 	
 	/**
 	 * Lvls 	actual 					theoritical 
-	 * 11 		Red						Yellow box and red
-	 * 12		Cyan					Yellow box and yellow box 
+	 * 11 		Red and Yellow box 		Yellow box and red
+	 * 12		Yellow Box Yellow box	Yellow box and yellow box 
 	 * 13		Green 					yellow box and burst 
 	 * 14		Yellow Box				Cyan and burst 
 	 * 15		Burst					burst burst maybe burst 
@@ -120,6 +120,7 @@ public class Spawn10to20 {
 				levelCounter = 1;
 				tempCounter = 0;
 				levelNumber++;// = levels.get(index);
+				timer = 100;
 			}
 
 		}
@@ -134,6 +135,10 @@ public class Spawn10to20 {
 						ID.Levels1to10Text,handler));
 				levelTimer = 1500;
 				tempCounter++;
+			}
+			if (timer ==90){
+				handler.addObject(new EnemyShooter(randx - 35, randy - 75, 100, 100,
+						-20, ID.EnemyShooter, this.handler));
 			}
 			if (timer == 0) {
 				handler.addObject(
@@ -168,7 +173,12 @@ public class Spawn10to20 {
 						ID.Levels1to10Text,handler));
 				levelTimer = 1500;
 				tempCounter++;
+				handler.addObject(new EnemyShooter(100, 100, 140, 140,
+						-20, ID.EnemyShooter, this.handler));
+				handler.addObject(new EnemyShooter(Game.WIDTH-200, 100, 140, 140,
+						-20, ID.EnemyShooter, this.handler));
 			}
+			/**
 			if (timer == 30) {
 				handler.addObject(
 						new EnemySweep(randx, randy, 20, 2, ID.EnemySweep, handler));
@@ -183,6 +193,7 @@ public class Spawn10to20 {
 						new EnemySweep(randx, randy, 20, -4, ID.EnemySweep, handler));
 				timer = 45;
 			}
+			**/
 			if (levelTimer == 1320) {
 				handler.clearLevelText();
 			}
@@ -191,6 +202,7 @@ public class Spawn10to20 {
 				hud.setLevel(hud.getLevel() + 1);
 				levelCounter++;
 				tempCounter = 0;
+				timer = 40;
 				if (randomMax == 1) {
 					levelNumber = 101;
 				} else {
