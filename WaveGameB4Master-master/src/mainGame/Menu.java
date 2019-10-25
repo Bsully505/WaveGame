@@ -203,6 +203,24 @@ public class Menu {
 			
 			g.drawString("Click Next to see Enemy and Boss Summaries", 40, 800);
 
+			//////////////////////////////////////////Instructions info-Graphic////////////+////////////////////////////////
+			Font fontT1 = new Font("Amoebic", 1, 25);
+			g.setFont(fontT1);
+			g.setColor(Color.CYAN);// set the new random color
+			g.fillRect(1586, 10, 300, 300);
+			g.setColor(Color.BLACK);
+			g.drawString("Controls", 1675, (int) 29);
+			g.drawImage(this.getImage("/images/arrowkeys.png"), 1680, 100, 100, 100, null);
+			g.drawString("Left", 1600, 155);
+			g.drawString("right", 1810, 155);
+			g.drawString("up", 1710, 90);
+			g.drawString("Down", 1695, 225);
+			Font fontT2 = new Font("Amoebic", 1, 18);
+			g.setFont(fontT2);
+			g.drawString("Pause Menu: PRESS P", 1588, 265);
+			g.drawString("Activate Power-up: PRESS ENTER", 1588, 285);
+			//////////////////////////////////////////Instructions info-Graphic////////////+////////////////////////////////
+
 			g.setFont(font2);
 			g.setColor(Color.white);
 			
