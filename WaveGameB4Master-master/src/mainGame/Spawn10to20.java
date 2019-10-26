@@ -218,15 +218,15 @@ public class Spawn10to20 {
 			}
 			levelTimer--;
 			if (tempCounter < 1) {
-				handler.addObject(new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Challenge: Tail Chase"),
-						ID.Levels1to10Text,handler));
+				handler.addObject(new EnemyShooter(100, 100, 140, 140,
+						-20, ID.EnemyShooter, this.handler));
 				levelTimer = 1500;
 				tempCounter++;
 			}
-			if (timer == 0) {
-				handler.addObject(
-						new EnemySmart(randx, randy, -7, ID.EnemySmart, handler));
-				timer = 60;
+			
+			if (timer <= 0) {
+				handler.addObject(new EnemyBurst(-200, 200, 50, 50, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				timer = 100;
 			}
 			if (levelTimer == 1320) {
 				handler.clearLevelText();
@@ -235,8 +235,8 @@ public class Spawn10to20 {
 				handler.clearEnemies();
 				hud.setLevel(hud.getLevel() + 1);
 				levelCounter++;
-				timer = 10;
 				tempCounter = 0;
+				timer = 40;
 				if (randomMax == 1) {
 					levelNumber = 101;
 				} else {
@@ -247,14 +247,37 @@ public class Spawn10to20 {
 				}
 			}
 		} else if (levelNumber == 4) {
+			if(spawning) {
+				timer--;
+			}
 			levelTimer--;
 			if (tempCounter < 1) {
 				handler.addObject(new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Challenge: Target"),
 						ID.Levels1to10Text,handler));
-				handler.addObject(new EnemyShooter(randx - 35, randy - 75, 100, 100,
-						-30, ID.EnemyShooter, this.handler));
+				//handler.addObject(new EnemyShooter(randx - 35, randy - 75, 100, 100,
+				//		-30, ID.EnemyShooter, this.handler));
+				
 				levelTimer = 1300;
+				timer = 100;
 				tempCounter++;
+			}
+			if (timer <= 0) {
+				handler.addObject(new EnemyBurst(-200, 200, 50, 50, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				timer = 100;
+			}
+			if (timer == 35) {
+				handler.addObject(
+						new EnemySweep(randx, randy, 30, 2, ID.EnemySweep, handler));
+			} else if (timer == 25) {
+				handler.addObject(
+						new EnemySweep(randx, randy, 30, -2, ID.EnemySweep, handler));
+			} else if (timer == 15) {
+				handler.addObject(
+						new EnemySweep(randx, randy, 30, 4, ID.EnemySweep, handler));
+			} else if (timer == 0) {
+				handler.addObject(
+						new EnemySweep(randx, randy, 30, -4, ID.EnemySweep, handler));
+				//timer = 30;
 			}
 			if (levelTimer == 1120) {
 				handler.clearLevelText();
@@ -286,6 +309,7 @@ public class Spawn10to20 {
 				tempCounter++;
 			}
 			if (timer <= 0) {
+				handler.addObject(new EnemyBurst(-250, 250, 75, 75, 250, side[r.nextInt(4)], ID.EnemyBurst, handler));
 				handler.addObject(new EnemyBurst(-250, 250, 75, 75, 250, side[r.nextInt(4)], ID.EnemyBurst, handler));
 				timer = 120;
 			}

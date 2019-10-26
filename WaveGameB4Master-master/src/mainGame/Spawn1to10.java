@@ -714,6 +714,7 @@ public class Spawn1to10 {
 
 	public void skipLevel() {
 		if (levelsRemaining == 1) {
+			game.gameState = STATE.Upgrade;
 			tempCounter = 0;
 			LEVEL_SET++;
 		} else if (levelsRemaining > 1) {
