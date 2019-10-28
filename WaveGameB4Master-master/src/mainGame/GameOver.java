@@ -37,7 +37,6 @@ public class GameOver {
 	private int timer;
 	private Color retryColor;
 	private String text;
-	private int ticks = 0;
 	private int endScore = 0;
 	private File scoresFile = new File("src//mainGame//scores.txt");//txt file
 	private Scanner scan = new Scanner(scoresFile);

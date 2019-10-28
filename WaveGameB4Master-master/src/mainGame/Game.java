@@ -54,7 +54,6 @@ public class Game extends Canvas implements Runnable {
 	private Pause pause;
 	private Leaderboard leaderboard;
 	public STATE gameState = STATE.Menu;
-	public static int TEMP_COUNTER;
 	private Midi menuMIDIPlayer;
 	private String menuMIDIMusic = "m64file_synth.mid";
 	private Midi gameMIDIPlayer;

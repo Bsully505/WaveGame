@@ -20,7 +20,6 @@ public class EnemyBoss extends GameObject {
 	private Handler handler;
 	private int timer = 80;
 	private int timer2 = 50;
-	private int timer3 = 20;
 	Random r = new Random();
 	private Image img;
 	private int spawn;
