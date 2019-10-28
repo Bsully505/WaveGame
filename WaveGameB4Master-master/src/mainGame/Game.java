@@ -73,7 +73,6 @@ public class Game extends Canvas implements Runnable {
 	public SocketIO socket;
 	private Midi upgradeMidiPlayer;
 	private String upgradeMIDIMusic = "Bandit_Radio_synth.midi";
-	private SimpleMidi winMIDIPlayer;
 	private String winMIDIMusic = "Super_Mario_Bros._-_Flag_synth.mid";
 	/**
 	 * Used to switch between each of the screens shown to the user
