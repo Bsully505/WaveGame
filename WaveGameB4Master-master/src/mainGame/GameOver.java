@@ -59,7 +59,6 @@ public class GameOver {
 		while (scan.hasNextLine()) {
 			currentLine = scan.nextLine();
 			fileList.add(currentLine);
-			System.out.println("filetoArrayList: " + currentLine);
 		}
 	}
 
@@ -84,11 +83,8 @@ public class GameOver {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(fileList.size());
 		for (String line : fileList) { //prints the newly sorted list into the file
 			pWriter.println(line);
-			//bWriter.newLine(); //TODO: uncomment and change everything to bWriter
-			System.out.println("arrayListToFile: " + line);
 		}
 		pWriter.flush();
 
@@ -106,7 +102,6 @@ public class GameOver {
 		endScore = hud.getScore();//used to show score at end
 
 		fileToArrayList(); //reads from file and inserts into arraylist first
-		System.out.println(determineMin(fileList));
 		if (determineMin(fileList) < hud.getScore() || fileList.size() < 10) {
 			String username = JOptionPane.showInputDialog("Enter a username to submit your score!");
 			String Highscore = hud.getScore() + " " + username;
@@ -114,13 +109,9 @@ public class GameOver {
 				fileList.remove(fileList.get(0));
 			}
 			fileList.add(Highscore);
-			System.out.println("sendScore: " + fileList);
 			pWriter.flush();
-			System.out.println("sendScore2" + fileList);
 			sortScores();
-			System.out.println("sendScore3" + fileList);
 			arrayListToFile();
-			System.out.println("sendScore4" + fileList);
 		}
 	}
 
