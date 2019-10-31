@@ -260,7 +260,6 @@ public class Game extends Canvas implements Runnable {
 	/**
 	 * Best Java game loop out there (used by Notch!)
 	 */
-	@Override
 	public void run() {
 		this.requestFocus();
 		long lastTime = System.nanoTime();
@@ -269,78 +268,32 @@ public class Game extends Canvas implements Runnable {
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		int frames = 0;
-
-		// Get monitor refresh rate:
-
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice[] gs = ge.getScreenDevices();
-
-		double maxRefreshRate = 0;
-
-		// if there are multiple monitors, we want to use the refresh rate of
-		// the highest one
-		for (int i = 0; i < gs.length; i++) {
-			DisplayMode dm = gs[i].getDisplayMode();
-			int refreshRate = dm.getRefreshRate();
-
-			// if we can't ascertain the refresh rate, we want to default to
-			// 60FPS
-			if (refreshRate == DisplayMode.REFRESH_RATE_UNKNOWN) {
-				System.out.println("Unknown refresh rate");
-				if (maxRefreshRate < 60) {
-					maxRefreshRate = 60;
-				}
-
-				// if we can ascertain the refresh rate(s) we want to use the
-				// highest one.
-			} else {
-				System.out.println("Refresh Rate for Screen " + i + " : " + refreshRate);
-				if (refreshRate >= maxRefreshRate) {
-					maxRefreshRate = refreshRate;
-				}
-			}
-		}
-
-		System.out.println("Using refresh rate: " + maxRefreshRate);
-
-		// we now want to set out refreshRate to the max refresh rate.
-
-		double nsScreen = 1000000000 / maxRefreshRate;
-		double deltaScreen = 0;
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
-			deltaScreen += (now - lastTime) / nsScreen;
 			lastTime = now;
 			while (delta >= 1) {
 				try {
-					tick();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}// 60 times a second, objects are being updated
- catch (JSONException e) {
-					// TODO Auto-generated catch block
+					tick();// 60 times a second, objects are being updated
+				} catch (IOException | JSONException e) {
 					e.printStackTrace();
 				}
 				delta--;
 			}
-			while (deltaScreen >= 1) {
-				render();
-				frames++;
-				deltaScreen--;
-
-			}
+			if (running)
+				render();// 60 times a second, objects are being drawn
+			frames++;
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				System.out.println("FPS: " + frames);
 				System.out.println(gameState);
-				System.out.println(Spawn1to10.LEVEL_SET);
+				System.out.println(Spawn1to10.LEVEL_SET+"level");
 				frames = 0;
 			}
 		}
 		stop();
+
 	}
 
 	 /* Constantly ticking (60 times per second, used for updating smoothly). Used
