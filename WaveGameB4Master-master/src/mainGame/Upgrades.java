@@ -18,6 +18,10 @@ public class Upgrades {
 	private Spawn10to20 spawner2;
 	private UpgradeScreen upgradeScreen;
 	private String ability = "";
+	private int useCounterFreeze = 0;
+	private int useCounterClear = 0;
+	private int abilityFreeze = 0;
+	private int abilityClear = 0;
 	private static double SIZE_SCALAR = .1;
 	private static double DAMAGE_RESISTANCE_SCALAR = .05;
 	private static double SPEED_BOOST_SCALAR = 1.5;
@@ -33,13 +37,28 @@ public class Upgrades {
 		this.spawner = spawner;
 		this.spawner2 = spawner2;
 	}
+	public void setAbilityFreeze(int freeze){
+		abilityFreeze = freeze;
+	}
+
+	public void setAbilityClear(int clear){
+		abilityClear = clear;
+	}
 
 	public void clearScreenAbility() {
 		handler.clearEnemies();
 		hud.setAbilityUses(-1);
+		useCounterClear += 1;
 		if (hud.getAbilityUses() == 0) {
+			hud.reduceNumClear();
 			ability = "";
+			hud.setAbility(ability);
 		}
+		else if(useCounterClear == abilityClear){
+			hud.reduceNumClear();
+			useCounterClear = 0;
+		}
+
 	}
 
 	public void decreasePlayerSize() {//changed math to not have reduced outcomes per purchase
@@ -99,9 +118,17 @@ public class Upgrades {
 		Spawn1to10.setSpawn(false);
 		Spawn10to20.setSpawn(false);
 		hud.setAbilityUses(-1);
+		useCounterFreeze += 1;
 		if (hud.getAbilityUses() == 0) {
+			hud.reduceNumFreeze();
 			ability = "";
+			hud.setAbility(ability);
 		}
+		else if(useCounterFreeze  == abilityFreeze){
+			hud.reduceNumFreeze();
+			useCounterFreeze = 0;
+		}
+
 	}
 
 	public void speedBoost() {

@@ -27,6 +27,8 @@ public class MouseListener extends MouseAdapter {
 	private Player player;
 	private String upgradeText;
 	private Pause pause;
+	private static int FREEZE_USES = 5;
+	private static int CLEAR_USES = 3;
 	public static boolean isHard;
 
 	public MouseListener(Game game, Handler handler, HUD hud, SpawnHard spawnerH, Spawn1to10 spawner, Spawn10to20 spawner2,
@@ -43,6 +45,8 @@ public class MouseListener extends MouseAdapter {
 		this.pause = pause;
 	}
 
+
+
 	public void mousePressed(MouseEvent e) {
 		int mx = (int) (e.getX() / Game.scaleFactor);
 		int my = (int) (e.getY() / Game.scaleFactor);
@@ -52,7 +56,6 @@ public class MouseListener extends MouseAdapter {
 		if (game.gameState == STATE.GameOver) { //geting out of the game when game is over
 			handler.object.clear();
 			upgrades.resetUpgrades();
-			//hud.health = 100; //original was not private
 			hud.reset();
 			hud.setScore(0);
 			hud.setLevel(1);
@@ -319,27 +322,34 @@ public class MouseListener extends MouseAdapter {
 			//Extra Life
 			if (mouseOver(mx, my, 300, 325, 125, 125)) {
 			if(hud.getScore()>=hud.getCost()){
-				hud.setScore(-(int)hud.getCost());
-				hud.setCost(hud.getCost()*hud.getCostMultipier());
-				hud.setExtraLives(hud.getExtraLives() + 1);
+				if(hud.getExtraLives() != hud.getNumLivesMax()){
+					hud.setScore(-(int)hud.getCost());
+					hud.setCost(hud.getCost()*hud.getCostMultipier());
+					hud.setExtraLives(hud.getExtraLives() + 1);
+				}
 				}
 			}
 			//Freeze Time
 			if (mouseOver(mx, my, 100, 650, 125, 125)) {
 				if(upgrades.getAbility().equals("")){
 				if (hud.getScore() >= hud.getActiveCost()) {
-					hud.setScore(-(int) hud.getActiveCost());
-					hud.setActiveCost(hud.getActiveCost() * 2);
-					upgrades.setAbility("freezeTime");
-					hud.setNumFreeze();
+					if(hud.getNumFreeze() != hud.getNumFreezeMax()){
+						hud.setScore(-(int) hud.getActiveCost());
+						hud.setActiveCost(hud.getActiveCost() * 2);
+						upgrades.setAbility("freezeTime");
+						hud.setNumFreeze();
+					}
 					}
 				}
 				else if(upgrades.getAbility().equals("freezeTime")){
 					if (hud.getScore() >= hud.getActiveCost()) {
-						hud.setScore(-(int) hud.getActiveCost());
-						hud.setActiveCost(hud.getActiveCost() * 2);
-						hud.setAbilityUses(5);
-						hud.setNumFreeze();
+						if(hud.getNumFreeze() != hud.getNumFreezeMax()){
+							hud.setScore(-(int) hud.getActiveCost());
+							hud.setActiveCost(hud.getActiveCost() * 2);
+							hud.setAbilityUses(FREEZE_USES);
+							upgrades.setAbilityFreeze(FREEZE_USES);
+							hud.setNumFreeze();
+						}
 					}
 				}
 			}
@@ -347,18 +357,23 @@ public class MouseListener extends MouseAdapter {
 			if (mouseOver(mx, my, 500, 650, 125, 125)) {
 				if(upgrades.getAbility().equals("")) {
 					if (hud.getScore() >= hud.getActiveCost()) {
-						hud.setScore(-(int) hud.getActiveCost());
-						hud.setActiveCost(hud.getActiveCost() * 2);
-						upgrades.setAbility("clearScreen");
-						hud.setNumClear();
+						if(hud.getNumClear() != hud.getNumClearMax()){
+							hud.setScore(-(int) hud.getActiveCost());
+							hud.setActiveCost(hud.getActiveCost() * 2);
+							upgrades.setAbility("clearScreen");
+							hud.setNumClear();
+						}
 					}
 				}
 				else if(upgrades.getAbility().equals("clearScreen")){
 					if (hud.getScore() >= hud.getActiveCost()) {
-						hud.setScore(-(int) hud.getActiveCost());
-						hud.setActiveCost(hud.getActiveCost() * 2);
-						hud.setAbilityUses(3);
-						hud.setNumClear();
+						if(hud.getNumClear() != hud.getNumClearMax()){
+							hud.setScore(-(int) hud.getActiveCost());
+							hud.setActiveCost(hud.getActiveCost() * 2);
+							hud.setAbilityUses(CLEAR_USES);
+							upgrades.setAbilityClear(CLEAR_USES);
+							hud.setNumClear();
+						}
 					}
 				}
 			}

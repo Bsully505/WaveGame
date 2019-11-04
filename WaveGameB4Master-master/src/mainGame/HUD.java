@@ -32,6 +32,7 @@ public class HUD {
 	private Color freezeColor = new Color(0, 255, 255, 25);
 	private Color regenColor = new Color(120, 255, 120);
 	private int extraLives = 0;
+	private static int NUM_LIVES_MAX = 1;
 	private double randnumber;
 	private String highScoreString = "";
 	private double costMultipier = 1.25;
@@ -40,6 +41,7 @@ public class HUD {
 	private double activeCost = 3000;
 	private static double ACTIVECOST =3000;
 	private int numFreeze=0;
+	private static int NUM_FREEZE_MAX = 2;
 	private static int NUM_REGEN_VALUE = 0;
 	private int numRegen=0;
 	private int numRegenMax = 10;//max number allowed for regen perk
@@ -56,6 +58,7 @@ public class HUD {
 	private int numArmor=NUM_ARMOR;
 	private static int numArmorMax = 5;
 	private int numClear=0;
+	private static int NUM_CLEAR_MAX = 2;
 	private double regenValue = 0; //total value is restricted by numRegenMax after scalar multiplication
 	private double regenValueScalar = .1;//scalar for regenValue, is multiplied by numRegen
 
@@ -64,9 +67,16 @@ public class HUD {
 	public int getNumClear() {
 		return numClear;
 	}
+	public int getNumClearMax(){
+		return NUM_CLEAR_MAX;
+	}
 
 	public void setNumClear() {
 		this.numClear += 1;
+	}
+
+	public void reduceNumClear(){
+		numClear -= 1;
 	}
 
 	public double getregenValue() {
@@ -120,10 +130,17 @@ public class HUD {
 	public int getNumFreeze() {
 		return numFreeze;
 	}
+	public int getNumFreezeMax(){
+		return NUM_FREEZE_MAX;
+	}
 
 	public void setNumFreeze() {
 		this.numFreeze += 1;
 	}
+	public void reduceNumFreeze(){
+		this.numFreeze -= 1;
+	}
+
 
 	public int getNumRegen() {
 		return numRegen;
@@ -365,13 +382,9 @@ public class HUD {
 		return this.extraLives;
 	}
 
-	/*
-	public void healthIncrease() {
-		//healthValueMax = healthValueMax+healthScalar;
-		//this.healthValue = healthValueMax;
-		healthBarModifier = (250/healthValueMax);
-		healthBarWidth = 4*(int)healthValueMax;
-	}*/
+	public int getNumLivesMax(){
+		return NUM_LIVES_MAX;
+	}
 
 ///////////////////individual power-ups reset section/////////////////////
 	public void resetRegen() {
@@ -387,11 +400,6 @@ public class HUD {
 	}
 	public void resetHealth() {
 
-		/*health = false;
-		healthValueMax = BASE_HEALTH;
-		this.healthValue = healthValueMax;
-		healthBarModifier = 2.5;
-		healthBarWidth = 400;*/
 		health = false;
 		numHealth = NUMHEALTH;
 		healthValueMax = BASE_HEALTH;//additional piece
