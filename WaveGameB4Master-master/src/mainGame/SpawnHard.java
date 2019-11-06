@@ -268,6 +268,8 @@ public class SpawnHard {
 			if (spawnTimer <= 0) {
 				handler.addObject(new EnemyBurst(-200, 200, 200, 200, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
 				handler.addObject(new EnemyBurst(-200, 200, 200, 200, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 200, 200, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 200, 200, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
 				spawnTimer = 180;
 			}
 			if (levelTimer == 0) {
@@ -312,17 +314,25 @@ public class SpawnHard {
 				handler.clearLevelText();
 			}
 			if (spawnTimer == 30) {
-				handler.addObject(
-						new EnemySweep(randx, randy, 20, 2, ID.EnemySweep, handler));
-			} else if (spawnTimer == 20) {
-				handler.addObject(
-						new EnemySweep(randx, randy, 20, -2, ID.EnemySweep, handler));
-			} else if (spawnTimer == 10) {
-				handler.addObject(
-						new EnemySweep(randx, randy, 20, 4, ID.EnemySweep, handler));
-			} else if (spawnTimer == 0) {
-				handler.addObject(
-						new EnemySweep(randx, randy, 20, -4, ID.EnemySweep, handler));
+				handler.addObject(new EnemySweep(randx, randy, 20, 2, ID.EnemySweep, handler));
+			}
+			if (spawnTimer == 25) {
+				handler.addObject(new EnemySweep(randx, randy, 20, -1, ID.EnemySweep, handler));
+			}
+			if (spawnTimer == 20) {
+				handler.addObject(new EnemySweep(randx, randy, 20, -2, ID.EnemySweep, handler));
+			}
+			if (spawnTimer == 15) {
+				handler.addObject(new EnemySweep(randx, randy, 20, -3, ID.EnemySweep, handler));
+			}
+			if (spawnTimer == 10) {
+				handler.addObject(new EnemySweep(randx, randy, 20, 4, ID.EnemySweep, handler));
+			}
+			if (spawnTimer == 5) {
+				handler.addObject(new EnemySweep(randx, randy, 20, 3, ID.EnemySweep, handler));
+			}
+			if (spawnTimer == 0) {
+				handler.addObject(new EnemySweep(randx, randy, 20, -4, ID.EnemySweep, handler));
 				spawnTimer = 80;
 			}
 
