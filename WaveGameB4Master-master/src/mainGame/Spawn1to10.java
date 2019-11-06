@@ -35,7 +35,7 @@ public class Spawn1to10 {
 	public static boolean spawning = false;
 	private int levelCounter = 1;
 	private LevelText welcomePit;
-	private LevelText welcome1;
+	private LevelText welcome1, counter3,counter2,counter1;
 	private LevelText controls;
 	private int randnumber;
 	private long timechecker;// used to check the length of time periods used by Bryan 11/6/2019
@@ -109,8 +109,25 @@ public class Spawn1to10 {
 				tempCounter++;
 
 			}
+			if(levelTimer>=100) {
+			counter3 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 90, "3",
+					ID.Levels1to10Text, handler);
+				handler.addObject(counter3);
+			}
+			else if(levelTimer>=50&& levelTimer <= 100) {
+				handler.removeObject(counter3);
+				counter2 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 90, "2",
+						ID.Levels1to10Text, handler);
+					handler.addObject(counter2);
+			}
+			else if(levelTimer>=0&& levelTimer <=50) {
+				handler.removeObject(counter2);
+				counter1 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 90, "1",
+						ID.Levels1to10Text, handler);
+					handler.addObject(counter1);
+			}
 			if (levelTimer <= 0) {// time to play!
-				handler.removeObject(welcome1);
+				handler.removeObject(counter1);
 				handler.clearCoins();
 				tempCounter = 0;
 				levelCounter = 1;
