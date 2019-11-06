@@ -13,6 +13,8 @@ import org.json.JSONException;
 
 import mainGame.Game.STATE;
 
+import static mainGame.Game.STATE.GameHard;
+
 /**
  * The main player in the game
  * 
@@ -26,6 +28,7 @@ public class Player extends GameObject {
 	private HUD hud;
 	private Game game;
 	private double damage;
+	private double damageHard = 14;
 	private static double DAMAGE_DEFAULT = 7;
 	private static int PLAYER_SIZE = 32;
 	private int playerWidth, playerHeight;
@@ -124,7 +127,11 @@ public class Player extends GameObject {
 				// collision code
 				if (getBounds().intersects(tempObject.getBounds()) && tempInvincible == 0) {// player hit an enemy
 					double curHealth = hud.getHealthValue();
-					curHealth -= damage;
+					if (game.gameState == GameHard) {
+						curHealth -= damageHard;
+					} else {
+						curHealth -= damage;
+					}
 					hud.setHealthValue(curHealth);
 					hud.updateScoreColor(Color.red);
 					wasHit = true;
