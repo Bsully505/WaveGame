@@ -169,7 +169,7 @@ public class SpawnHard {
 			}
 			if (spawnTimer == 0) {
 				handler.addObject(
-						new EnemySmart(randx, randy, -5, ID.EnemySmart, handler));
+						new EnemySmart(randx, randy, -8, ID.EnemySmart, handler));
 				spawnTimer = 100;
 			}
 			if (levelTimer == 0) {
@@ -213,9 +213,14 @@ public class SpawnHard {
 				handler.clearLevelText();
 			}
 			if (spawnTimer == 0) {// time to spawn another enemy
-
+				handler.addObject(
+						new EnemyBasic(randx, randy, 12, 12, ID.EnemyBasic, handler));
 				handler.addObject(
 						new EnemyBasic(randx, randy, 9, 9, ID.EnemyBasic, handler));// add them to the handler, which handles all game objects
+				handler.addObject(
+						new EnemyBasic(randx, randy, 7, 7, ID.EnemyBasic, handler));
+				handler.addObject(
+						new EnemyBasic(randx, randy, 5, 5, ID.EnemyBasic, handler));
 				spawnTimer = 100;// reset the spawn timer
 			}
 			if (levelTimer == 0) {// level is over
@@ -261,7 +266,8 @@ public class SpawnHard {
 				handler.clearLevelText();
 			}
 			if (spawnTimer <= 0) {
-				handler.addObject(new EnemyBurst(-200, 200, 50, 50, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 200, 200, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 200, 200, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
 				spawnTimer = 180;
 			}
 			if (levelTimer == 0) {
