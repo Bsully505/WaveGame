@@ -110,7 +110,7 @@ public class KeyInput extends KeyAdapter {
 		
 		//pause functionality
 		if(key == 80|| key == 27){
-			if(game.gameState == STATE.Game){
+			if(game.gameState == STATE.Game||game.gameState == STATE.GameHard||game.gameState == STATE.Boss){
 				pause.setGameSaved(false);
 				game.gameState = STATE.Pause;
 				
