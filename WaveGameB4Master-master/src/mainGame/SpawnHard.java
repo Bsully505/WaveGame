@@ -266,10 +266,12 @@ public class SpawnHard {
 				handler.clearLevelText();
 			}
 			if (spawnTimer <= 0) {
-				handler.addObject(new EnemyBurst(-200, 200, 200, 200, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
-				handler.addObject(new EnemyBurst(-200, 200, 200, 200, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
-				handler.addObject(new EnemyBurst(-200, 200, 200, 200, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
-				handler.addObject(new EnemyBurst(-200, 200, 200, 200, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 30, 30, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 30, 30, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 30, 30, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 30, 30, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 30, 30, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+
 				spawnTimer = 180;
 			}
 			if (levelTimer == 0) {
@@ -370,7 +372,11 @@ public class SpawnHard {
 				levelTimer = 1000;
 				tempCounter++;
 				handler.addObject(new EnemyShooter(randx - 35, randy - 75, 100, 100,
-						-20, ID.EnemyShooter, this.handler));
+						-30, ID.EnemyShooter, this.handler));
+				handler.addObject(new EnemyShooter(randx - 35, randy - 75, 100, 100,
+						-30, ID.EnemyShooter, this.handler));
+				handler.addObject(new EnemyShooter(randx - 35, randy - 75, 100, 100,
+						-30, ID.EnemyShooter, this.handler));
 			}
 			if (levelTimer == 900){
 				handler.clearLevelText();
