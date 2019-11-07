@@ -738,13 +738,10 @@ public class SpawnHard {
 			tempCounter = 0;
 			levelNumber = 101;
 		} else if (levelsRemaining > 1) {
-			levels.remove(index);
 			levelsRemaining--;
-			System.out.println(levelsRemaining);
 			levelCounter++;
 			tempCounter = 0;
-			index = r.nextInt(levelsRemaining);
-			levelNumber = levels.get(index);
+			levelNumber++; 
 		}
 	}
 
