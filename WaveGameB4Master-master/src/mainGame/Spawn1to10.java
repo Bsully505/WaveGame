@@ -32,6 +32,7 @@ public class Spawn1to10 {
 	private int levelsRemaining;
 	private int levelNumber = 0;
 	private int tempCounter = 0;
+	private int countDown = 0;
 	public static boolean spawning = false;
 	private int levelCounter = 1;
 	private LevelText welcomePit;
@@ -39,6 +40,7 @@ public class Spawn1to10 {
 	private LevelText controls;
 	private int randnumber;
 	private long timechecker;// used to check the length of time periods used by Bryan 11/6/2019
+	private int delay =0;
 
 	public Spawn1to10(Handler handler, HUD hud, Game game) {
 		this.handler = handler;
@@ -100,7 +102,7 @@ public class Spawn1to10 {
 		if (levelNumber <= 0) {
 			levelTimer--;
 			if (tempCounter < 1) {// display intro game message ONE time
-				welcome1 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, "Let's start off easy...",
+				welcome1 = new LevelText(Game.WIDTH / 2 - 375, Game.HEIGHT / 2 - 250, "Let's start off easy...",
 						ID.Levels1to10Text, handler);
 				handler.addObject(welcome1);
 				LevelText controls = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, "Controls",
@@ -109,25 +111,9 @@ public class Spawn1to10 {
 				tempCounter++;
 
 			}
-			if(levelTimer>=100) {
-			counter3 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 90, "3",
-					ID.Levels1to10Text, handler);
-				handler.addObject(counter3);
-			}
-			else if(levelTimer>=50&& levelTimer <= 100) {
-				handler.removeObject(counter3);
-				counter2 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 90, "2",
-						ID.Levels1to10Text, handler);
-					handler.addObject(counter2);
-			}
-			else if(levelTimer>=0&& levelTimer <=50) {
-				handler.removeObject(counter2);
-				counter1 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 90, "1",
-						ID.Levels1to10Text, handler);
-					handler.addObject(counter1);
-			}
+
 			if (levelTimer <= 0) {// time to play!
-				handler.removeObject(counter1);
+				//handler.removeObject(counter1);
 				handler.clearCoins();
 				tempCounter = 0;
 				levelCounter = 1;
@@ -136,6 +122,50 @@ public class Spawn1to10 {
 			}
 
 		}
+		if (levelNumber == 0) {
+			if(countDown == 0) {
+				if(delay==0) {
+				counter3 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 50, "3",
+						ID.Levels1to10Text, handler);
+				handler.addObject(counter3);
+				}
+				if(delay>=50) {
+				countDown++;
+				}
+				else {
+					delay++;
+				}
+			}
+			else if(countDown == 1) {
+				if(delay ==50) {
+				handler.removeObject(counter3);
+				counter2 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 50, "2",
+						ID.Levels1to10Text, handler);
+				handler.addObject(counter2);
+				}
+				if(delay==100) {
+				countDown++;
+				}
+				else {
+					delay++;
+				}
+			}
+			else if(countDown == 2) {
+				if(delay==100) {
+				handler.removeObject(counter2);
+				counter1 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 50, "1",
+						ID.Levels1to10Text, handler);
+				handler.addObject(counter1);
+				}
+				if (delay==140) {
+					handler.removeObject(counter1);
+				}
+				else {
+					delay++;
+				}
+			}
+		}
+
 		/**
 		 * levels 
 		 * 								 
@@ -171,7 +201,7 @@ public class Spawn1to10 {
 			levelTimer--;
 			if (tempCounter < 1) {
 				handler.clearCoins();
-				LevelText welcome3 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Level " + hud.getLevel()),
+				LevelText welcome3 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 130, ("Level " + hud.getLevel()),
 						ID.Levels1to10Text, handler);
 				handler.addObject(welcome3);
 				levelTimer = 1000;
