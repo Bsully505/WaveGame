@@ -1,5 +1,7 @@
 package mainGame;
 
+import mainGame.Game.STATE;
+
 /**
  * The upgrades that a user can have (they modify the game for the user)
  * 
@@ -99,13 +101,15 @@ public class Upgrades {
 	public void levelSkipAbility() {
 		handler.clearEnemies();
 		hud.setLevel(hud.getLevel() + 1);
+		if(game.gameState == STATE.GameHard){
+			spawnerH.skipLevel();
+		}
+		else{
 		if (Spawn1to10.LEVEL_SET == 1 || Spawn1to10.LEVEL_SET == 3) {
 			spawner.skipLevel();
 		} else if (Spawn1to10.LEVEL_SET == 2) {
 			spawner2.skipLevel();
-		} else if (SpawnHard.LEVEL_SET == 1) {
-			spawnerH.skipLevel();
-		}
+		}}
 		hud.setAbilityUses(hud.getAbilityUses() - 1);
 		if (hud.getAbilityUses() == 0) {
 			ability = "";
