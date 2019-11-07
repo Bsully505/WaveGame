@@ -25,6 +25,7 @@ public class KeyInput extends KeyAdapter {
 	private Upgrades upgrades;
 	private String ability;
 	private Pause pause;
+	boolean HModeflag = false;
 
 	// uses current handler created in Game as parameter
 	public KeyInput(Pause pause, Handler handler, Game game, HUD hud, Player player, Spawn1to10 spawner, Upgrades upgrades) {
@@ -110,18 +111,16 @@ public class KeyInput extends KeyAdapter {
 		
 		//pause functionality
 		if(key == 80|| key == 27){
-			boolean HModeflag = false;
+			
 			if(game.gameState == STATE.Game||game.gameState == STATE.GameHard||game.gameState == STATE.Boss){
 				if(game.gameState == STATE.GameHard){
 					HModeflag = true;
 				}
-				
 				pause.setGameSaved(false);
 				game.gameState = STATE.Pause;
 				
-				
 			} else if (game.gameState == STATE.Pause || game.gameState == STATE.PauseH1 || game.gameState == STATE.PauseH2 || game.gameState == STATE.PauseH3 || game.gameState ==STATE.PauseShop){
-				if(HModeflag){
+				if(HModeflag==true){
 					game.gameState = STATE.GameHard;
 					HModeflag = false;
 				}
@@ -238,7 +237,7 @@ public class KeyInput extends KeyAdapter {
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
 			if (tempObject.getId() == ID.Player) {
-				// key events for player 1
+				// key events for player 1gi
 				if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP)
 					keyDown[0] = false;// tempObject.setVelY(0);
 				if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT)
