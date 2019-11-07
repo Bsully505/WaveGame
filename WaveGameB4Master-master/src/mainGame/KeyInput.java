@@ -110,15 +110,24 @@ public class KeyInput extends KeyAdapter {
 		
 		//pause functionality
 		if(key == 80|| key == 27){
+			boolean HModeflag = false;
 			if(game.gameState == STATE.Game||game.gameState == STATE.GameHard||game.gameState == STATE.Boss){
+				if(game.gameState == STATE.GameHard){
+					HModeflag = true;
+				}
+				
 				pause.setGameSaved(false);
 				game.gameState = STATE.Pause;
 				
 				
 			} else if (game.gameState == STATE.Pause || game.gameState == STATE.PauseH1 || game.gameState == STATE.PauseH2 || game.gameState == STATE.PauseH3 || game.gameState ==STATE.PauseShop){
 				//game.socket.emit("getBoard");
+				if(HModeflag){
+					game.gameState = STATE.GameHard;
+				}
+				else{
 				game.gameState = STATE.Game;
-				
+				}
 			}
 			
 			
