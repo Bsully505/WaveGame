@@ -99,11 +99,20 @@ public class KeyInput extends KeyAdapter {
 		
 		
 		/**
-		 * key bind for deleting all enemies on the screen
-		 * not completed yet
+		 * for entering the -1 level 
+		 * easter egg
+		 * 
 		 */
+		if(spawner.getLevelNumber()==1){
 		if(key == 79){//key is "o"
-		
+			if(game.getPlayerXInt()<25&&game.getPlayerYInt()<25){
+				spawner.setLevelNumber(-1);
+				handler.clearEnemies();
+				hud.setLevel(-1);
+				spawner.setSpawnTimer(10);
+				spawner.setTempCounter(0);
+			}
+		}
 		}
 		}
 		

@@ -117,7 +117,7 @@ public class Game extends Canvas implements Runnable {
 		ShopMIDIPlayer = new Midi();
 		new Window((int) drawWidth, (int) drawHeight, "Wave Game ", this);
 		
-		
+		/**
 		socket = new SocketIO("http://tubbschat.com:3000/");
 		socket.connect(new IOCallback() {
 			@Override
@@ -159,7 +159,9 @@ public class Game extends Canvas implements Runnable {
 			
 		});
 		socket.emit("getBoard");
+		**/
 	}
+	
 
 	/**
 	 * The thread is simply a programs path of execution. This method ensures
