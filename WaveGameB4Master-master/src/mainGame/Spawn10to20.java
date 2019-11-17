@@ -102,10 +102,7 @@ public class Spawn10to20 {
 			}
 		}
 		
-		// if(LEVEL_SET_2_RESET < 1){
-		// restart();
-		// LEVEL_SET_2_RESET ++;
-		// }
+		
 		if (levelNumber <= 0) {
 			levelTimer--;
 			if (tempCounter < 1) {
@@ -178,22 +175,7 @@ public class Spawn10to20 {
 				handler.addObject(new EnemyShooter(Game.WIDTH-200, 100, 140, 140,
 						-20, ID.EnemyShooter, this.handler));
 			}
-			/**
-			if (timer == 30) {
-				handler.addObject(
-						new EnemySweep(randx, randy, 20, 2, ID.EnemySweep, handler));
-			} else if (timer == 20) {
-				handler.addObject(
-						new EnemySweep(randx, randy, 20, -2, ID.EnemySweep, handler));
-			} else if (timer == 10) {
-				handler.addObject(
-						new EnemySweep(randx, randy, 20, 4, ID.EnemySweep, handler));
-			} else if (timer == 0) {
-				handler.addObject(
-						new EnemySweep(randx, randy, 20, -4, ID.EnemySweep, handler));
-				timer = 45;
-			}
-			**/
+		
 			if (levelTimer == 1320) {
 				handler.clearLevelText();
 			}
@@ -254,8 +236,7 @@ public class Spawn10to20 {
 			if (tempCounter < 1) {
 				handler.addObject(new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Challenge: Target"),
 						ID.Levels1to10Text,handler));
-				//handler.addObject(new EnemyShooter(randx - 35, randy - 75, 100, 100,
-				//		-30, ID.EnemyShooter, this.handler));
+				
 				
 				levelTimer = 1300;
 				timer = 100;
@@ -546,23 +527,7 @@ public class Spawn10to20 {
 				handler.clearLevelText();
 			}
 		}
-		// WINNER
-		// else if(levelNumber){
-		// levelTimer --;
-		// if(tempCounter < 1){
-		// handler.addObject(new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200,
-		// "Same levels...", ID.Levels1to10Text));
-		// handler.addObject(new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2,
-		// "...but a little harder now", ID.Levels1to10Text));
-		// tempCounter++;
-		// }
-		// if(levelTimer <= 0){
-		// handler.clearEnemies();
-		// tempCounter = 0;
-		// levelNumber = levels.get(index);
-		// }
-		//
-		// }
+		
 
 	}
 

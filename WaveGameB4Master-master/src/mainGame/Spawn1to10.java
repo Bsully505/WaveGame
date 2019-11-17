@@ -640,65 +640,10 @@ public class Spawn1to10 {
 					levels.remove(index);
 					levelsRemaining--;
 					index = r.nextInt(levelsRemaining);
-					levelNumber++;// = levels.get(index);
+					levelNumber++;
 				}
 			}
-		} //else if (levelNumber == 10) {
-		//			if (spawning) {
-		//				spawnTimer--;// keep decrementing the spawning spawnTimer 60 times a second
-		//			}
-		//
-		//			//This code is inconsistent with the code
-		//			//that loads the rest of the enemies
-		////			LevelText welcome10 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Level " + hud.getLevel()),
-		////						ID.Levels1to10Text,handler);
-		////			handler.addObject(welcome10);
-		//
-		//			levelTimer--;
-		//			if (tempCounter < 1) {
-		//				handler.clearCoins();
-		//				if (levelsRemaining == 5) {
-		//					LevelText welcome10 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Let's step it up with Level " + hud.getLevel()),
-		//						ID.Levels1to10Text,handler);
-		//					handler.addObject(welcome10);
-		//					}
-		//					else {
-		//					LevelText welcome10 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Level " + hud.getLevel()),
-		//						ID.Levels1to10Text,handler);
-		//					handler.addObject(welcome10);
-		//					}
-		//				levelTimer = 1000;
-		//				tempCounter++;
-		//			}
-		//			if (levelTimer == 900){
-		//				handler.clearLevelText();
-		//			}
-		//			game.gameState = STATE.Boss;
-		//			if (levelTimer == 900) {
-		//				handler.clearCoins();
-		//				LevelText welcomePit = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Welcome to the Pit"),
-		//						ID.Levels1to10Text,handler);
-		//				handler.addObject(welcomePit);
-		//				handler.addObject(new EnemyBoss(ID.EnemyBoss, handler));
-		//				tempCounter++;
-		//			}
-		//
-		//			if (levelTimer == 0) {
-		//				handler.clearEnemies();
-		//				hud.setLevel(hud.getLevel() + 1);
-		//				levelCounter++;
-		//				spawnTimer = 10;
-		//				tempCounter = 0;
-		//				if (levelsRemaining == 1) {
-		//					levelNumber = 101;
-		//				} else {
-		//					levels.remove(index);
-		//					levelsRemaining--;
-		//					index = r.nextInt(levelsRemaining);
-		//					levelNumber++;// = levels.get(index);
-		//				}
-		//			}
-		//		}
+		} 
 
 		else if (levelNumber == 10) {// arbitrary number for the boss
 			game.gameState = STATE.Boss;
