@@ -99,7 +99,7 @@ public class Spawn1to10 {
 			}
 		}
 
-		if (levelNumber <= 0) {
+		if (levelNumber <= 0 ) {
 			levelTimer--;
 			if (getTempCounter() < 1) {// display intro game message ONE time
 				welcome1 = new LevelText(Game.WIDTH / 2 - 375, Game.HEIGHT / 2 - 250, "Let's start off easy...",
@@ -193,16 +193,62 @@ public class Spawn1to10 {
 		/**
 		 * easter egg level 
 		 */
-		if(levelNumber == -1){
-			if (getTempCounter() < 1) {
-				handler.clearCoins();
-				LevelText welcome3 = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 130, ("Level " + hud.getLevel()),
-						ID.Levels1to10Text, handler);
-				handler.addObject(welcome3);
-				levelTimer = 1000;
+		if(levelNumber == 21){
+				if (getTempCounter() < 1) {
+					levelTimer = 1000;
+					handler.clearCoins();
+					LevelText welcomePit = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Easter Egg Level"),
+							ID.Levels1to10Text,handler);
+					handler.addObject(welcomePit);
+					
+					setTempCounter(getTempCounter() + 1);
+				} else if (getTempCounter() >= 1) {
+					/**
+					for (int i = 0; i < handler.object.size(); i++) {
+						GameObject tempObject = handler.object.get(i);
+						if (tempObject.getId() == ID.EnemyBoss) {
+							if (tempObject.getHealth() <= 0 && LEVEL_SET != 3) {
+								handler.removeObject(tempObject);
+								LEVEL_SET++;
+								levelCounter = 1;
+								game.gameState = STATE.Upgrade;
+							}
 
-				setTempCounter(getTempCounter() + 1);
-			}
+							else if (tempObject.getHealth() <= 900){
+								handler.clearLevelText();
+							}
+							else if (tempObject.getHealth() <= 0 && LEVEL_SET == 3) {
+								handler.removeObject(tempObject);
+								game.gameState = STATE.GameWonHard;
+							}
+							else if (tempObject.getHealth() == 900){
+								handler.removeObject(welcomePit);
+
+							}
+						}
+
+					}**/
+
+				}
+				/**
+				 * when the level ends 
+				 */
+				if (levelTimer == 0) {
+					handler.clearEnemies();
+					hud.setLevel(hud.getLevel() + 1);
+					levelCounter++;
+					setSpawnTimer(10);
+					setTempCounter(0);
+					if (levelsRemaining == 1) {
+						levelNumber = 11;
+					} else {
+						levels.remove(index);
+						levelsRemaining--;
+						index = r.nextInt(levelsRemaining);
+						levelNumber++;// = levels.get(index);
+					}
+				}
+			
 		}
 		if (levelNumber <= 20 && randnumber == 10) {
 			handler.addPickup(new PickupCoin(getRandomInteger(2000, 1),
