@@ -195,6 +195,7 @@ public class Spawn1to10 {
 		 */
 		if(levelNumber == 21){
 				if (getTempCounter() < 1) {
+					Player.easter_egg = true;
 					levelTimer = 1000;
 					handler.clearCoins();
 					LevelText welcomePit = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Easter Egg Level"),
