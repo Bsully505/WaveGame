@@ -55,7 +55,7 @@ public class Game extends Canvas implements Runnable {
 	private Leaderboard leaderboard;
 	public STATE gameState = STATE.Menu;
 	private Midi menuMIDIPlayer;
-	private String menuMIDIMusic = "m64file_synth.mid";
+	private String menuMIDIMusic = "Friends.mid";
 	private Midi gameMIDIPlayer;
 	private String gameMIDIMusic = "Danza_Kuduro_synth.mid";
 	private Midi bossMIDIPlayer;
