@@ -62,7 +62,7 @@ public class Midi {
 	 * Stops the Midi class from playing what it was currently playing.
 	 */
 	public void StopMidi() {
-		if (isOpen == true && isPlaying == true) {
+		if (isOpen && isPlaying) {
 			sequencer.stop();
 			isOpen = false;
 			isPlaying = false;
