@@ -81,7 +81,12 @@ public class Player extends GameObject {
 	public void checkIfDead() throws JSONException {
 		if (hud.getHealthValue() <= 0) {// player is dead, game over!
 			if (hud.getExtraLives() == 0) {
-				game.gameState = STATE.GameOver;
+				if (game.gameState == Game.STATE.GameHard) {
+					game.gameState = STATE.GameOverHard;
+				}
+				else {
+					game.gameState = STATE.GameOver;
+				}
 				game.getGameOver().sendScore();
 				hud.setScore(-1*hud.getScore());
 			}

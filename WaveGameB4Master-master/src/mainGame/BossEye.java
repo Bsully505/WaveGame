@@ -70,7 +70,7 @@ public class BossEye extends GameObject {
 		timeCounter++; // for use in abilities and stop
 		
 		if(timeCounter >= stopTime){
-			if(game.gameState == STATE.GameOver){
+			if(game.gameState == STATE.GameOver || game.gameState == STATE.GameOverHard){
 				
 			} else {
 				game.gameState = STATE.GameWon;
