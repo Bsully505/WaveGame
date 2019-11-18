@@ -3,8 +3,11 @@ package mainGame;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Random;
 import javax.sound.midi.InvalidMidiDataException;
 import javax.sound.midi.MidiUnavailableException;
@@ -41,10 +44,13 @@ public class Player extends GameObject {
 	private String hitsoundMIDIMusic = "HitsoundPart2.mid";
 	private String pickupcoinMIDIMusic = "pickupcoin.mid";
 	private boolean wasHit;
+	public static boolean easter_egg = false;
+	private Image mario;
 	
 
 	public Player(double x, double y, ID id, Handler handler, HUD hud, Game game) {
 		super(x, y, id);
+		mario = getImage("images/mario.png");
 		this.handler = handler;
 		this.hud = hud;
 		this.game = game;
@@ -160,9 +166,15 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
+		if(!easter_egg){
 		g.setColor(Color.white);
 		g.fillRect((int) x, (int) y, playerWidth, playerHeight);
-	}
+		}
+		else{
+			
+			g.drawImage(mario,(int) x, (int)y, 500, 500, null);
+		}
+		}
 
 	@Override
 	public Rectangle getBounds() {
@@ -208,5 +220,15 @@ public class Player extends GameObject {
 	public void resetSpeed(){
 		playerSpeed = PLAYER_SPEED;
 		diagonalPlayerSpeed = DIAG_PLAYER_SPEED;
+	}
+	public Image getImage(String path) {
+		Image image = null;
+		try {
+			URL imageURL = Game.class.getResource(path);
+			image = Toolkit.getDefaultToolkit().getImage(imageURL);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return image;
 	}
 }
