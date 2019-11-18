@@ -372,10 +372,8 @@ public class SpawnHard {
 				tempCounter++;
 				handler.addObject(new EnemyShooter(randx - 35, randy - 75, 100, 100,
 						-30, ID.EnemyShooter, this.handler));
-				handler.addObject(new EnemyShooter(randx - 35, randy - 75, 100, 100,
-						-30, ID.EnemyShooter, this.handler));
-				handler.addObject(new EnemyShooter(randx - 35, randy - 75, 100, 100,
-						-30, ID.EnemyShooter, this.handler));
+				handler.addObject(new EnemyShooter(Game.WIDTH-200, 100, 140, 140,
+						-40, ID.EnemyShooter, this.handler));
 			}
 			if (levelTimer == 900){
 				handler.clearLevelText();
