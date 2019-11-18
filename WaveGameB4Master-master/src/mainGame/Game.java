@@ -78,7 +78,7 @@ public class Game extends Canvas implements Runnable {
 	 * Used to switch between each of the screens shown to the user
 	 */
 	public enum STATE {
-		Menu, Help, Help2, Help3, Game, GameOver, GameWon, Upgrade, Boss, Pause, PauseH1, PauseH2, PauseH3, PauseShop, Leaderboard, GameWonHard, GameHard
+		Menu, Help, Help2, Help3, Game, GameOver, GameWon, Upgrade, Boss, Pause, PauseH1, PauseH2, PauseH3, PauseShop, Leaderboard, GameWonHard, GameHard, GameOverHard
 	};
 
 	/**
@@ -342,9 +342,9 @@ public class Game extends Canvas implements Runnable {
 			menu.tick();
 		} else if (gameState == STATE.Upgrade) {// user is on upgrade screen, update the upgrade screen
 			upgradeScreen.tick();
-		} else if (gameState == STATE.GameOver) {// game is over, update the game over screen
+		} else if (gameState == STATE.GameOver || gameState == STATE.GameOverHard) {// game is over, update the game over screen
 			gameOver.tick();
-		} else if (gameState == STATE.GameWon){
+		}else if (gameState == STATE.GameWon){
 			gameWon.highscore = true;
 			gameWon.tick();
 		} else if (gameState == STATE.GameWonHard){
@@ -456,9 +456,10 @@ public class Game extends Canvas implements Runnable {
 													// screen, draw the upgrade
 													// screen
 				upgradeScreen.render(g);
-			} else if (gameState == STATE.GameOver) {// game is over, draw the
+			} else if (gameState == STATE.GameOver || gameState == STATE.GameOverHard) {// game is over, draw the
 														// game over screen
 				gameOver.render(g);
+
 			} else if (gameState == STATE.GameWon || gameState == STATE.GameWonHard) {
 				gameWon.render(g);
 			} else if (gameState == STATE.Leaderboard){

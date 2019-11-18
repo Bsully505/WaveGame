@@ -20,6 +20,7 @@ public class HUD {
 	private double healthValueScalar = 20;//scalar for hp bar in upgrades section
 	private double greenValue = 255;
 	private int score = 00000000000;
+	private int hardScore = 00000000000;
 	private int level = 0;
 	private boolean regen = false;
 	private int timer = 10;
@@ -29,12 +30,14 @@ public class HUD {
 	private String ability = "";
 	private int abilityUses = 0;
 	private Color scoreColor = Color.white;
+	private Color hardScoreColor = Color.white;
 	private Color freezeColor = new Color(0, 255, 255, 25);
 	private Color regenColor = new Color(120, 255, 120);
 	private int extraLives = 0;
 	private static int NUM_LIVES_MAX = 1;
 	private double randnumber;
 	private String highScoreString = "";
+	private String hardHighScoreString = "";
 	private double costMultipier = 1.25;
 	private double cost = 500;
 	private static double COST = 500;
@@ -337,9 +340,14 @@ public class HUD {
 		this.scoreColor = color;
 	}
 
+	public void updateHardScoreColor(Color color) {
+		this.hardScoreColor = color;
+	}
+
 	public void setScore(int score) {
 		this.score += score;
 	}
+	public void setHardScore(int hardScore) {this.hardScore += hardScore;}
 	/**
 	 * 
 	 * @param score: the original score
@@ -349,6 +357,8 @@ public class HUD {
 	public int getScore() {
 		return score;
 	}
+
+	public int getHardScore() { return hardScore; }
 
 	public int getLevel() {
 		return level;
@@ -430,8 +440,17 @@ public class HUD {
 		this.highScoreString = leaderboard.get(0);
 		
 	}
-	
+
+	public void setHardHighScore(String data) {
+
+		leaderboard = new ArrayList<String>(Arrays.asList(data.split(",")));
+		System.out.println(leaderboard.size()); //TODO: change to hardLeaderboard
+
+		this.hardHighScoreString = leaderboard.get(0);	} //TODO: change to hardLeaderboard
+
 	public ArrayList<String> getLeaderboard(){
 		return leaderboard;
 	}
+
+	
 }

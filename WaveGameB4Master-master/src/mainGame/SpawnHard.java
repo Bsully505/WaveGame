@@ -266,11 +266,10 @@ public class SpawnHard {
 				handler.clearLevelText();
 			}
 			if (spawnTimer <= 0) {
-				handler.addObject(new EnemyBurst(-200, 200, 30, 30, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
-				handler.addObject(new EnemyBurst(-200, 200, 30, 30, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
-				handler.addObject(new EnemyBurst(-200, 200, 30, 30, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
-				handler.addObject(new EnemyBurst(-200, 200, 30, 30, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
-				handler.addObject(new EnemyBurst(-200, 200, 30, 30, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 25, 25, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 25, 25, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 25, 25, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
+				handler.addObject(new EnemyBurst(-200, 200, 25, 25, 200, side[r.nextInt(4)], ID.EnemyBurst, handler));
 
 				spawnTimer = 180;
 			}

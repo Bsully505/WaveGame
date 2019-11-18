@@ -53,7 +53,7 @@ public class MouseListener extends MouseAdapter {
 		
 		//game.socket.emit("getBoard");
 
-		if (game.gameState == STATE.GameOver) { //geting out of the game when game is over
+		if (game.gameState == STATE.GameOver || game.gameState == STATE.GameOverHard) { //geting out of the game when game is over
 			handler.object.clear();
 			upgrades.resetUpgrades();
 			hud.reset();
