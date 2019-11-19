@@ -91,6 +91,7 @@ public class Player extends GameObject {
 					game.gameState = STATE.GameOverHard;
 				}
 				else {
+					this.easter_egg= false;
 					game.gameState = STATE.GameOver;
 				}
 				game.getGameOver().sendScore();
@@ -172,7 +173,7 @@ public class Player extends GameObject {
 		}
 		else{
 			
-			g.drawImage(mario,(int) x, (int)y, 500, 500, null);
+			g.drawImage(mario,(int) x, (int)y, playerWidth, playerHeight, null);
 		}
 		}
 

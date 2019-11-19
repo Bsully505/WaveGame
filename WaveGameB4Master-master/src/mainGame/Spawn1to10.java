@@ -194,6 +194,7 @@ public class Spawn1to10 {
 		 * easter egg level 
 		 */
 		if(levelNumber == 21){
+			game.gameState = STATE.Boss;
 				if (getTempCounter() < 1) {
 					Player.easter_egg = true;
 					levelTimer = 1000;
@@ -201,10 +202,10 @@ public class Spawn1to10 {
 					LevelText welcomePit = new LevelText(Game.WIDTH / 2 - 675, Game.HEIGHT / 2 - 200, ("Easter Egg Level"),
 							ID.Levels1to10Text,handler);
 					handler.addObject(welcomePit);
-					
+					handler.addObject(new EnemyBoss(ID.EnemyBoss, handler));
 					setTempCounter(getTempCounter() + 1);
 				} else if (getTempCounter() >= 1) {
-					/**
+					
 					for (int i = 0; i < handler.object.size(); i++) {
 						GameObject tempObject = handler.object.get(i);
 						if (tempObject.getId() == ID.EnemyBoss) {
@@ -228,7 +229,7 @@ public class Spawn1to10 {
 							}
 						}
 
-					}**/
+					}
 
 				}
 				/**

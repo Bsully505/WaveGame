@@ -29,7 +29,7 @@ public class EnemyBoss extends GameObject {
 		this.handler = handler;
 		velX = 0;
 		velY = 2;
-		img = getImage("images/EnemyBoss.png");
+		img = getImage("images/DryBowserBoss.png");
 		this.health = 1000;//full health is 1000
 	}
 
