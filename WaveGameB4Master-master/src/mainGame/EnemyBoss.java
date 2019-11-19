@@ -29,7 +29,12 @@ public class EnemyBoss extends GameObject {
 		this.handler = handler;
 		velX = 0;
 		velY = 2;
-		img = getImage("images/DryBowserBoss.png");
+		if(!Player.easter_egg){
+		img = getImage("images/EnemyBoss.png");
+		}
+		else{
+			img = getImage("images/DryBowserBoss.png");
+		}
 		this.health = 1000;//full health is 1000
 	}
 
