@@ -53,6 +53,7 @@ public class Game extends Canvas implements Runnable {
 	private Player player;
 	private Pause pause;
 	private Leaderboard leaderboard;
+	private HardLeaderboard hardLeaderboard;
 	public STATE gameState = STATE.Menu;
 	private Midi menuMIDIPlayer;
 	private String menuMIDIMusic = "Friends.mid";
@@ -106,6 +107,7 @@ public class Game extends Canvas implements Runnable {
 		gameWon = new GameWon(this, this.handler, this.hud);
 		pause = new Pause(this.hud, this, this.handler, false, this.spawner, this.spawner2, upgrades);
 		leaderboard = new Leaderboard(this,this.handler,this.hud, this.gameOver);
+		hardLeaderboard = new HardLeaderboard(this, this.handler, this.hud, this.gameOver);
 		mouseListener = new MouseListener(this, this.handler, this.hud, this.spawnerH, this.spawner, this.spawner2, this.upgradeScreen,
 				this.player, this.upgrades, pause);
 		this.addKeyListener(new KeyInput(this.pause, this.handler, this, this.hud, this.player, this.spawner, this.upgrades));
@@ -420,6 +422,7 @@ public class Game extends Canvas implements Runnable {
 				gameWon.render(g);
 			} else if (gameState == STATE.Leaderboard){
 				leaderboard.render(g);
+				hardLeaderboard.render(g);
 			}
 		}
 		///////// Draw things above this//////////////

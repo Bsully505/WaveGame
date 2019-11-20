@@ -83,12 +83,13 @@ public class Player extends GameObject {
 			if (hud.getExtraLives() == 0) {
 				if (game.gameState == Game.STATE.GameHard) {
 					game.gameState = STATE.GameOverHard;
-				}
-				else {
+					game.getGameOver().hardSendScore();
+				} else {
 					game.gameState = STATE.GameOver;
+					game.getGameOver().sendScore();
 				}
-				game.getGameOver().sendScore();
 				hud.setScore(-1*hud.getScore());
+
 			}
 			else if (hud.getExtraLives() > 0) {// has an extra life, game continues
 				hud.setExtraLives(hud.getExtraLives() - 1);

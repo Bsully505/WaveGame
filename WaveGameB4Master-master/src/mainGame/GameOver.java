@@ -46,6 +46,7 @@ public class GameOver {
 	private PrintWriter hardPWriter = new PrintWriter(hardBWriter);
 	private PrintWriter pWriter = new PrintWriter(bWriter);
 	private ArrayList<String> fileList = new ArrayList<String>();
+	private ArrayList<String> hardFileList = new ArrayList<String>();
 
 	public GameOver(Game game, Handler handler, HUD hud) throws IOException {
 		this.game = game;
@@ -58,16 +59,18 @@ public class GameOver {
 
 	public void fileToArrayList() { //reads from the file and inserts each line into an arraylist
 		String currentLine;
-		if (game.gameState == Game.STATE.GameOverHard) {
-			while (hardScan.hasNextLine()) {
-				currentLine = hardScan.nextLine();
-				fileList.add(currentLine);
-			}
-		} else {
-			while (scan.hasNextLine()) {
-				currentLine = scan.nextLine();
-				fileList.add(currentLine);
-			}
+		while (scan.hasNextLine()) {
+			currentLine = scan.nextLine();
+			fileList.add(currentLine);
+		}
+	}
+
+
+	public void hardfileToArrayList() {
+		String currentLine;
+		while (hardScan.hasNextLine()) {
+			currentLine = hardScan.nextLine();
+			hardFileList.add(currentLine);
 		}
 	}
 
@@ -75,7 +78,21 @@ public class GameOver {
 		fileList.sort(new Comparator<String>() { //sort the arraylist
 			@Override
 			public int compare(String o1, String o2) {
-				return extract(o1) - extract(o2); //compares the two scores returned by extract to sort them in order
+				return extract(o2) - extract(o1); //compares the two scores returned by extract to sort them in order
+			}
+
+			int extract(String tempLine) {
+				String[] num = tempLine.split(" "); //splits each line with space, separating the score from the name
+				return Integer.parseInt(num[0]); //returns the score which is used for sorting the arraylist
+			}
+		});
+	}
+
+	public void hardSortScores(){
+		hardFileList.sort(new Comparator<String>() { //sort the arraylist
+			@Override
+			public int compare(String o1, String o2) {
+				return extract(o2) - extract(o1); //compares the two scores returned by extract to sort them in order
 			}
 
 			int extract(String tempLine) {
@@ -105,7 +122,7 @@ public class GameOver {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		for (String line : fileList) { //prints the newly sorted list into the file
+		for (String line : hardFileList) { //prints the newly sorted list into the file
 			hardPWriter.println(line);
 		}
 		hardPWriter.flush();
@@ -120,6 +137,11 @@ public class GameOver {
 		return fileList;
 	}
 
+	public ArrayList<String> getHardFileList() {
+		hardfileToArrayList();
+		return hardFileList;
+	}
+
 	public void sendScore() {
 		endScore = hud.getScore();//used to show score at end
 		fileToArrayList(); //reads from file and inserts into arraylist first
@@ -132,13 +154,25 @@ public class GameOver {
 			}
 			fileList.add(Highscore);
 			pWriter.flush();
-			hardPWriter.flush();
 			sortScores();
-			if (game.gameState == Game.STATE.GameOverHard) {
-				hardArrayListToFile();
-			} else {
-				arrayListToFile();
+			arrayListToFile();
+		}
+	}
+
+	public void hardSendScore() {
+		endScore = hud.getScore();//used to show score at end
+		hardfileToArrayList(); //reads from file and inserts into arraylist first
+		System.out.println(Arrays.toString(hardFileList.toArray()));
+		if (determineMin(hardFileList) < endScore || hardFileList.size() < 10) {
+			String username = JOptionPane.showInputDialog("Enter a username to submit your score!");
+			String Highscore = hud.getScore() + " " + username;
+			if (hardFileList.size() >= 10) {
+				hardFileList.remove(hardFileList.get(0));
 			}
+			hardFileList.add(Highscore);
+			hardPWriter.flush();
+			hardSortScores();
+			hardArrayListToFile();
 		}
 	}
 
