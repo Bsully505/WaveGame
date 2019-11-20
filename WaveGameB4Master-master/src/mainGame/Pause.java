@@ -58,20 +58,24 @@ public class Pause {
 	
 	private Pause pause;
 	private FileWriter savedGameFile;
+	private SpawnHard spawnerHard;
 	private Spawn1to10 spawner1;
 	private Spawn10to20 spawner2;
 	private Upgrades upgrade;
 	private String description;
+	private Player player;
 
 	
 	//CONSTRUCTOR
-	public Pause (HUD hud, Game game, Handler handler, Boolean gameSaved, Spawn1to10 sp1, Spawn10to20 sp2, Upgrades upgrade){
+	public Pause (HUD hud, Game game, Handler handler, Boolean gameSaved, Spawn1to10 sp1, Spawn10to20 sp2,SpawnHard sph, Upgrades upgrade,Player player){
 		this.hud = hud;
 		this.game = game;
 		this.handler = handler;
 		this.spawner1 = sp1;
 		this.spawner2 = sp2;
+		this.spawnerHard = sph;
 		this.upgrade = upgrade;
+		this.player = player;
 		
 		buttonImg = getImage("/images/MenuButton.png");
 		
@@ -174,6 +178,10 @@ public class Pause {
 		hud.setScore(-1*hud.getScore());
 		spawner1.setLevelNumber(0);
 		spawner1.setLevelsRemaining(10);
+		spawnerHard.setLevelNumber(1);
+		player.setPos(Game.WIDTH / 2 - 32, Game.HEIGHT / 2 - 32);
+		
+	
 		
 		this.clearSavedGameFile();
 		
@@ -193,7 +201,7 @@ public class Pause {
 	}
 	
 	public void reset(){
-		this.pause = new Pause(this.hud, this.game, this.handler, gameSaved, this.spawner1, this.spawner2, this.upgrade);
+		this.pause = new Pause(this.hud, this.game, this.handler, gameSaved, this.spawner1, this.spawner2,this.spawnerHard, this.upgrade,this.player);
 	}
 	
 	public void render(Graphics g){

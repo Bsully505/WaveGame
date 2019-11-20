@@ -232,4 +232,8 @@ public class Player extends GameObject {
 		}
 		return image;
 	}
+	public void setPos(int x, int y){
+		this.x = x;
+		this.y = y;
+	}
 }
