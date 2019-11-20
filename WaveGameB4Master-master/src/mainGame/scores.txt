@@ -1,10 +1,6 @@
+700 aaa
+600 bbb
+500 ccc
+500 ddd
+400 fg;ljhls;dfjhd
 300 aaaaaaaaa
-300 es
-400 fdslkgds
-500 f
-500 efrefrf
-500 ffffsda
-700 ejrop
-800 froep
-1100 yeep
-1600 fr4
