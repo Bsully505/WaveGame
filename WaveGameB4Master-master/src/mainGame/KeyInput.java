@@ -106,7 +106,7 @@ public class KeyInput extends KeyAdapter {
 		if(spawner.getLevelNumber()==1){
 		if(key == 79){//key is "o"
 			if(game.getPlayerXInt()<25&&game.getPlayerYInt()<25){
-				spawner.setLevelNumber(-1);
+				spawner.setLevelNumber(21);
 				handler.clearEnemies();
 				hud.setLevel(-1);
 				spawner.setSpawnTimer(10);

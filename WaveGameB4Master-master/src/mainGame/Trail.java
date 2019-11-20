@@ -42,11 +42,13 @@ public class Trail extends GameObject{
 	}
 
 	public void render(Graphics g) {
+		if(Player.easter_egg==false){
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setComposite(makeTransparent(alpha));
 		g.setColor(color);
 		g.fillRect((int)this.x, (int)this.y, this.width, this.height);
 		g2d.setComposite(makeTransparent(1));//allows for the rectangle to appear like it's fading
+		}
 	}
 	
 	/**
